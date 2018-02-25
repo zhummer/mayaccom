@@ -1,0 +1,7 @@
+#org.skyway.core settings
+#Sat Feb 17 18:33:43 CET 2018
+version=11.0.1.me201602080330
+default.top.level.package=com.mayaccom
+hide.dsl=false
+models.folder.name=.springDSL
+initialized=true

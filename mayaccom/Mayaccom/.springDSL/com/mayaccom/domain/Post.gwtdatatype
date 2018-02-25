@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gwt:GWTDataType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:data="model.data" xmlns:gwt="gwt" description="Post"><extendedCore xsi:type="data:DataType" href="Post.datatype#/"/><properties display="id"><Property xsi:type="data:Field" href="Post.datatype#//@fields[name='id']"/></properties><properties display="content"><Property xsi:type="data:Field" href="Post.datatype#//@fields[name='content']"/></properties></gwt:GWTDataType>
