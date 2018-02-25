@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="WebApp_ID"
+	version="3.1"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+	<display-name>Mayaccom</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+
+
+
+
+
+	<filter>
+		<description>
+			generated-spring-security-session-integration-filter
+		</description>
+		<filter-name>
+			SpringSecuritySessionIntegrationFilter
+		</filter-name>
+		<filter-class>
+			org.springframework.security.web.context.SecurityContextPersistenceFilter
+		</filter-class>
+	</filter>
+	<filter>
+		<description>generated-persistence-filter</description>
+		<filter-name>MayaDBFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+		</filter-class>
+		<init-param>
+			<param-name>entityManagerFactoryBeanName</param-name>
+			<param-value>MayaDB</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<description>generated-sitemesh-filter</description>
+		<filter-name>Sitemesh Filter</filter-name>
+		<filter-class>
+			com.opensymphony.module.sitemesh.filter.PageFilter
+		</filter-class>
+	</filter>
+
+
+
+
+
+
+
+
+
+
+	<filter>
+		<description>generated-spring-security-filter</description>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>
+			org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>
+			SpringSecuritySessionIntegrationFilter
+		</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>MayaDBFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Sitemesh Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+
+
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<description>generated-servlet</description>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				classpath:Mayaccom-web-context.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<description>generated-resources-servlet</description>
+		<servlet-name>Resource Servlet</servlet-name>
+		<servlet-class>
+			org.springframework.js.resource.ResourceServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Resource Servlet</servlet-name>
+		<url-pattern>/resources/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Content/{content_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Content</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectContent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editContent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveContent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteContent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexContent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newContent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteContent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listContentAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveContentAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteContentAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteContentAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editContentAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newContentAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectContentAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Accomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Accomodation/{accomodation_id}/contents
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Accomodation/{accomodation_id}/contents/{content_id}
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Accomodation/{accomodation_id}/host/{host_id}
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Accomodation/{accomodation_id}/host</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Accomodation/{accomodation_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Content/{content_id}/accomodation/{accomodation_id}
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Content/{content_id}/accomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Post</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Post/{post_id}/host/{host_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Post/{post_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Post/{post_id}/topic/{topic_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Post/{post_id}/host</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Post/{post_id}/topic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteForumTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listForumTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editForumTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectForumTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteForumTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveForumTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newForumTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteAccomodationHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listAccomodationContents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listAccomodationHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveAccomodationContents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectAccomodationHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteAccomodationContents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteAccomodationHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newAccomodationContents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editAccomodationContents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteAccomodation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveAccomodationHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteAccomodationContents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectAccomodationContents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editAccomodationHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newAccomodationHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Host/{host_id}/topics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Host/{host_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Host/{host_id}/topics/{topic_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Host/{host_id}/accomodations/{accomodation_id}
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Host/{host_id}/posts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Host/{host_id}/posts/{post_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Host/{host_id}/accomodations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Host</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteTopicForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editTopicPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editTopicHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectTopicHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectTopicPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listTopicHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteTopicForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listTopicPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveTopicPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveTopicForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteTopicHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editTopicForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteTopicPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listTopicForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteTopicPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectTopicForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveTopicHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newTopicHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteTopicHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newTopicPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newTopicForum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Topic/{topic_id}/posts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Topic/{topic_id}/forum/{forum_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Topic/{topic_id}/posts/{post_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Topic/{topic_id}/forum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Topic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Topic/{topic_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Topic/{topic_id}/host</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Topic/{topic_id}/host/{host_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newPost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeletePostHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectPostTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/savePostHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newPostHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deletePostHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newPostTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/savePost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeletePost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editPostTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectPost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editPostHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editPost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deletePost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeletePostTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listPostHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listPostTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectPostHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deletePostTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexPost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/savePostTopic</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Forum/{forum_id}/topics/{topic_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Forum</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Forum/{forum_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Forum/{forum_id}/topics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteHostPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newHostTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listHostAccomodations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listHostPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectHostAccomodations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteHostTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveHostTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveHostPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteHostTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listHostTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteHostAccomodations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectHostTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteHostAccomodations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newHostPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectHostPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteHostPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editHostPosts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveHostAccomodations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editHostTopics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editHostAccomodations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newHostAccomodations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveHost</url-pattern>
+	</servlet-mapping>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+</web-app>
