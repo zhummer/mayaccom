@@ -75,30 +75,6 @@ public class PostDAOImpl extends AbstractJpaDao<Post> implements PostDAO {
 	}
 
 	/**
-	 * JPQL Query - findPostByContent
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByContent.query]JPASelect
-	 */
-	@Transactional
-	public Set<Post> findPostByContent(String content1) throws DataAccessException {
-
-		return findPostByContent(content1, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findPostByContent
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByContent.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Post> findPostByContent(String content1, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findPostByContent", startResult, maxRows, content1);
-		return new LinkedHashSet<Post>(query.getResultList());
-	}
-
-	/**
 	 * JPQL Query - findPostById
 	 *
 	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostById.query]JPASelect
@@ -126,30 +102,27 @@ public class PostDAOImpl extends AbstractJpaDao<Post> implements PostDAO {
 	}
 
 	/**
-	 * JPQL Query - findPostByPrimaryKey
+	 * JPQL Query - findPostByContent
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByPrimaryKey.query]JPASelect
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByContent.query]JPASelect
 	 */
 	@Transactional
-	public Post findPostByPrimaryKey(Integer id) throws DataAccessException {
+	public Set<Post> findPostByContent(String content1) throws DataAccessException {
 
-		return findPostByPrimaryKey(id, -1, -1);
+		return findPostByContent(content1, -1, -1);
 	}
 
 	/**
-	 * JPQL Query - findPostByPrimaryKey
+	 * JPQL Query - findPostByContent
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByPrimaryKey.query]JPASelectWithPagination
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByContent.query]JPASelectWithPagination
 	 */
 
+	@SuppressWarnings("unchecked")
 	@Transactional
-	public Post findPostByPrimaryKey(Integer id, int startResult, int maxRows) throws DataAccessException {
-		try {
-			Query query = createNamedQuery("findPostByPrimaryKey", startResult, maxRows, id);
-			return (com.mayaccom.domain.Post) query.getSingleResult();
-		} catch (NoResultException nre) {
-			return null;
-		}
+	public Set<Post> findPostByContent(String content1, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findPostByContent", startResult, maxRows, content1);
+		return new LinkedHashSet<Post>(query.getResultList());
 	}
 
 	/**
@@ -174,6 +147,33 @@ public class PostDAOImpl extends AbstractJpaDao<Post> implements PostDAO {
 	public Set<Post> findAllPosts(int startResult, int maxRows) throws DataAccessException {
 		Query query = createNamedQuery("findAllPosts", startResult, maxRows);
 		return new LinkedHashSet<Post>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findPostByPrimaryKey
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByPrimaryKey.query]JPASelect
+	 */
+	@Transactional
+	public Post findPostByPrimaryKey(Integer id) throws DataAccessException {
+
+		return findPostByPrimaryKey(id, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findPostByPrimaryKey
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByPrimaryKey.query]JPASelectWithPagination
+	 */
+
+	@Transactional
+	public Post findPostByPrimaryKey(Integer id, int startResult, int maxRows) throws DataAccessException {
+		try {
+			Query query = createNamedQuery("findPostByPrimaryKey", startResult, maxRows, id);
+			return (com.mayaccom.domain.Post) query.getSingleResult();
+		} catch (NoResultException nre) {
+			return null;
+		}
 	}
 
 	/**

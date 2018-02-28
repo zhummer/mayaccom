@@ -75,105 +75,6 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	}
 
 	/**
-	 * JPQL Query - findForumById
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumById.query]JPASelect
-	 */
-	@Transactional
-	public Forum findForumById(Integer id) throws DataAccessException {
-
-		return findForumById(id, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findForumById
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumById.query]JPASelectWithPagination
-	 */
-
-	@Transactional
-	public Forum findForumById(Integer id, int startResult, int maxRows) throws DataAccessException {
-		try {
-			Query query = createNamedQuery("findForumById", startResult, maxRows, id);
-			return (com.mayaccom.domain.Forum) query.getSingleResult();
-		} catch (NoResultException nre) {
-			return null;
-		}
-	}
-
-	/**
-	 * JPQL Query - findForumByName
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByName.query]JPASelect
-	 */
-	@Transactional
-	public Set<Forum> findForumByName(String name) throws DataAccessException {
-
-		return findForumByName(name, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findForumByName
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByName.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Forum> findForumByName(String name, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findForumByName", startResult, maxRows, name);
-		return new LinkedHashSet<Forum>(query.getResultList());
-	}
-
-	/**
-	 * JPQL Query - findForumByDescription
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByDescription.query]JPASelect
-	 */
-	@Transactional
-	public Set<Forum> findForumByDescription(String description) throws DataAccessException {
-
-		return findForumByDescription(description, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findForumByDescription
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByDescription.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Forum> findForumByDescription(String description, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findForumByDescription", startResult, maxRows, description);
-		return new LinkedHashSet<Forum>(query.getResultList());
-	}
-
-	/**
-	 * JPQL Query - findAllForums
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findAllForums.query]JPASelect
-	 */
-	@Transactional
-	public Set<Forum> findAllForums() throws DataAccessException {
-
-		return findAllForums(-1, -1);
-	}
-
-	/**
-	 * JPQL Query - findAllForums
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findAllForums.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Forum> findAllForums(int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findAllForums", startResult, maxRows);
-		return new LinkedHashSet<Forum>(query.getResultList());
-	}
-
-	/**
 	 * JPQL Query - findForumByDescriptionContaining
 	 *
 	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByDescriptionContaining.query]JPASelect
@@ -218,6 +119,105 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	@Transactional
 	public Set<Forum> findForumByNameContaining(String name, int startResult, int maxRows) throws DataAccessException {
 		Query query = createNamedQuery("findForumByNameContaining", startResult, maxRows, name);
+		return new LinkedHashSet<Forum>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findForumByName
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByName.query]JPASelect
+	 */
+	@Transactional
+	public Set<Forum> findForumByName(String name) throws DataAccessException {
+
+		return findForumByName(name, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findForumByName
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByName.query]JPASelectWithPagination
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Forum> findForumByName(String name, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findForumByName", startResult, maxRows, name);
+		return new LinkedHashSet<Forum>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findForumById
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumById.query]JPASelect
+	 */
+	@Transactional
+	public Forum findForumById(Integer id) throws DataAccessException {
+
+		return findForumById(id, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findForumById
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumById.query]JPASelectWithPagination
+	 */
+
+	@Transactional
+	public Forum findForumById(Integer id, int startResult, int maxRows) throws DataAccessException {
+		try {
+			Query query = createNamedQuery("findForumById", startResult, maxRows, id);
+			return (com.mayaccom.domain.Forum) query.getSingleResult();
+		} catch (NoResultException nre) {
+			return null;
+		}
+	}
+
+	/**
+	 * JPQL Query - findAllForums
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findAllForums.query]JPASelect
+	 */
+	@Transactional
+	public Set<Forum> findAllForums() throws DataAccessException {
+
+		return findAllForums(-1, -1);
+	}
+
+	/**
+	 * JPQL Query - findAllForums
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findAllForums.query]JPASelectWithPagination
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Forum> findAllForums(int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findAllForums", startResult, maxRows);
+		return new LinkedHashSet<Forum>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findForumByDescription
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByDescription.query]JPASelect
+	 */
+	@Transactional
+	public Set<Forum> findForumByDescription(String description) throws DataAccessException {
+
+		return findForumByDescription(description, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findForumByDescription
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ForumDAO/findForumByDescription.query]JPASelectWithPagination
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Forum> findForumByDescription(String description, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findForumByDescription", startResult, maxRows, description);
 		return new LinkedHashSet<Forum>(query.getResultList());
 	}
 

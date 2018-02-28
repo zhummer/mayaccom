@@ -81,61 +81,60 @@ public class TopicRestController {
 	private TopicService topicService;
 
 	/**
-	 * View an existing Post entity
+	 * Delete an existing Host entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/loadTopicPosts%7Bf713e2ff-27dd-4602-96c7-966d2a986a1a%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/deleteTopicHost%7Baecf49ce-6885-4fc9-8fd7-4eab741646c6%7D/.properties.swoperation]
 	 */
-	@RequestMapping(value = "/Topic/{topic_id}/posts/{post_id}", method = RequestMethod.GET)
-	@ResponseBody
-	public Post loadTopicPosts(@PathVariable Integer topic_id, @PathVariable Integer related_posts_id) {
-		Post post = postDAO.findPostByPrimaryKey(related_posts_id, -1, -1);
-
-		return post;
-	}
-
-	/**
-	* Create a new Post entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/newTopicPosts%7Bd8da2a2e-af60-491a-be5b-39f0f16dd843%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Topic/{topic_id}/posts", method = RequestMethod.POST)
-	@ResponseBody
-	public Post newTopicPosts(@PathVariable Integer topic_id, @RequestBody Post post) {
-		topicService.saveTopicPosts(topic_id, post);
-		return postDAO.findPostByPrimaryKey(post.getId());
-	}
-
-	/**
-	* Show all Post entities by Topic
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/getTopicPosts%7B25f865b0-1c9f-4862-9a01-9a32ff02772f%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Topic/{topic_id}/posts", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Post> getTopicPosts(@PathVariable Integer topic_id) {
-		return new java.util.ArrayList<Post>(topicDAO.findTopicByPrimaryKey(topic_id).getPosts());
-	}
-
-	/**
-	* Show all Topic entities
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/listTopics%7B1558604c-56ae-4ccb-9d9d-02f68f18ec13%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Topic", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Topic> listTopics() {
-		return new java.util.ArrayList<Topic>(topicService.loadTopics());
-	}
-
-	/**
-	* Delete an existing Host entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/deleteTopicHost%7Baecf49ce-6885-4fc9-8fd7-4eab741646c6%7D/.properties.swoperation]
-	*/
 	@RequestMapping(value = "/Topic/{topic_id}/host/{host_id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteTopicHost(@PathVariable Integer topic_id, @PathVariable Integer related_host_id) {
 		topicService.deleteTopicHost(topic_id, related_host_id);
+	}
+
+	/**
+	* Create a new Topic entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/newTopic%7Bb067b2c3-5763-4bff-9fd5-af04602c3195%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Topic", method = RequestMethod.POST)
+	@ResponseBody
+	public Topic newTopic(@RequestBody Topic topic) {
+		topicService.saveTopic(topic);
+		return topicDAO.findTopicByPrimaryKey(topic.getId());
+	}
+
+	/**
+	* Select an existing Topic entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/loadTopic%7B80bd089b-94cb-4bbd-bb0f-7b306f70a6a4%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Topic/{topic_id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Topic loadTopic(@PathVariable Integer topic_id) {
+		return topicDAO.findTopicByPrimaryKey(topic_id);
+	}
+
+	/**
+	* Get Host entity by Topic
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/getTopicHost%7Be544f280-6218-4122-8e45-2586042112bd%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Topic/{topic_id}/host", method = RequestMethod.GET)
+	@ResponseBody
+	public Host getTopicHost(@PathVariable Integer topic_id) {
+		return topicDAO.findTopicByPrimaryKey(topic_id).getHost();
+	}
+
+	/**
+	* Save an existing Host entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/saveTopicHost%7B1dc310d9-c880-4e6d-9ec5-072799c32d7f%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Topic/{topic_id}/host", method = RequestMethod.PUT)
+	@ResponseBody
+	public Host saveTopicHost(@PathVariable Integer topic_id, @RequestBody Host host) {
+		topicService.saveTopicHost(topic_id, host);
+		return hostDAO.findHostByPrimaryKey(host.getId());
 	}
 
 	/**
@@ -148,6 +147,40 @@ public class TopicRestController {
 	public Post saveTopicPosts(@PathVariable Integer topic_id, @RequestBody Post posts) {
 		topicService.saveTopicPosts(topic_id, posts);
 		return postDAO.findPostByPrimaryKey(posts.getId());
+	}
+
+	/**
+	* Save an existing Forum entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/saveTopicForum%7Bc5621a38-f3b9-4d4e-a258-53e119c47c8c%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Topic/{topic_id}/forum", method = RequestMethod.PUT)
+	@ResponseBody
+	public Forum saveTopicForum(@PathVariable Integer topic_id, @RequestBody Forum forum) {
+		topicService.saveTopicForum(topic_id, forum);
+		return forumDAO.findForumByPrimaryKey(forum.getId());
+	}
+
+	/**
+	* Delete an existing Post entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/deleteTopicPosts%7B60662039-a7ac-4c9b-8f16-b9081f1931d2%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Topic/{topic_id}/posts/{post_id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteTopicPosts(@PathVariable Integer topic_id, @PathVariable Integer related_posts_id) {
+		topicService.deleteTopicPosts(topic_id, related_posts_id);
+	}
+
+	/**
+	* Show all Topic entities
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/listTopics%7B1558604c-56ae-4ccb-9d9d-02f68f18ec13%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Topic", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Topic> listTopics() {
+		return new java.util.ArrayList<Topic>(topicService.loadTopics());
 	}
 
 	/**
@@ -182,61 +215,28 @@ public class TopicRestController {
 	}
 
 	/**
-	* Delete an existing Forum entity
+	* View an existing Post entity
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/deleteTopicForum%7B4ab36ad0-7e19-4f76-9a59-934337f63191%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/loadTopicPosts%7Bf713e2ff-27dd-4602-96c7-966d2a986a1a%7D/.properties.swoperation]
 	*/
-	@RequestMapping(value = "/Topic/{topic_id}/forum/{forum_id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/Topic/{topic_id}/posts/{post_id}", method = RequestMethod.GET)
 	@ResponseBody
-	public void deleteTopicForum(@PathVariable Integer topic_id, @PathVariable Integer related_forum_id) {
-		topicService.deleteTopicForum(topic_id, related_forum_id);
+	public Post loadTopicPosts(@PathVariable Integer topic_id, @PathVariable Integer related_posts_id) {
+		Post post = postDAO.findPostByPrimaryKey(related_posts_id, -1, -1);
+
+		return post;
 	}
 
 	/**
-	* Delete an existing Topic entity
+	* Create a new Host entity
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/deleteTopic%7B50391368-9439-49c8-aad6-51bac8c7fccf%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/newTopicHost%7Bf45c0033-81b9-4342-b6de-56d14662d8b0%7D/.properties.swoperation]
 	*/
-	@RequestMapping(value = "/Topic/{topic_id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/Topic/{topic_id}/host", method = RequestMethod.POST)
 	@ResponseBody
-	public void deleteTopic(@PathVariable Integer topic_id) {
-		Topic topic = topicDAO.findTopicByPrimaryKey(topic_id);
-		topicService.deleteTopic(topic);
-	}
-
-	/**
-	* Create a new Topic entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/newTopic%7Bb067b2c3-5763-4bff-9fd5-af04602c3195%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Topic", method = RequestMethod.POST)
-	@ResponseBody
-	public Topic newTopic(@RequestBody Topic topic) {
-		topicService.saveTopic(topic);
-		return topicDAO.findTopicByPrimaryKey(topic.getId());
-	}
-
-	/**
-	* Save an existing Forum entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/saveTopicForum%7Bc5621a38-f3b9-4d4e-a258-53e119c47c8c%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Topic/{topic_id}/forum", method = RequestMethod.PUT)
-	@ResponseBody
-	public Forum saveTopicForum(@PathVariable Integer topic_id, @RequestBody Forum forum) {
-		topicService.saveTopicForum(topic_id, forum);
-		return forumDAO.findForumByPrimaryKey(forum.getId());
-	}
-
-	/**
-	* Get Host entity by Topic
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/getTopicHost%7Be544f280-6218-4122-8e45-2586042112bd%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Topic/{topic_id}/host", method = RequestMethod.GET)
-	@ResponseBody
-	public Host getTopicHost(@PathVariable Integer topic_id) {
-		return topicDAO.findTopicByPrimaryKey(topic_id).getHost();
+	public Host newTopicHost(@PathVariable Integer topic_id, @RequestBody Host host) {
+		topicService.saveTopicHost(topic_id, host);
+		return hostDAO.findHostByPrimaryKey(host.getId());
 	}
 
 	/**
@@ -253,18 +253,6 @@ public class TopicRestController {
 	}
 
 	/**
-	* Save an existing Host entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/saveTopicHost%7B1dc310d9-c880-4e6d-9ec5-072799c32d7f%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Topic/{topic_id}/host", method = RequestMethod.PUT)
-	@ResponseBody
-	public Host saveTopicHost(@PathVariable Integer topic_id, @RequestBody Host host) {
-		topicService.saveTopicHost(topic_id, host);
-		return hostDAO.findHostByPrimaryKey(host.getId());
-	}
-
-	/**
 	* Get Forum entity by Topic
 	* 
 	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/getTopicForum%7B1d8b5d02-1da7-46c6-ab97-c92c5db48200%7D/.properties.swoperation]
@@ -276,14 +264,26 @@ public class TopicRestController {
 	}
 
 	/**
-	* Select an existing Topic entity
+	* Create a new Post entity
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/loadTopic%7B80bd089b-94cb-4bbd-bb0f-7b306f70a6a4%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/newTopicPosts%7Bd8da2a2e-af60-491a-be5b-39f0f16dd843%7D/.properties.swoperation]
 	*/
-	@RequestMapping(value = "/Topic/{topic_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/Topic/{topic_id}/posts", method = RequestMethod.POST)
 	@ResponseBody
-	public Topic loadTopic(@PathVariable Integer topic_id) {
-		return topicDAO.findTopicByPrimaryKey(topic_id);
+	public Post newTopicPosts(@PathVariable Integer topic_id, @RequestBody Post post) {
+		topicService.saveTopicPosts(topic_id, post);
+		return postDAO.findPostByPrimaryKey(post.getId());
+	}
+
+	/**
+	* Delete an existing Forum entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/deleteTopicForum%7B4ab36ad0-7e19-4f76-9a59-934337f63191%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Topic/{topic_id}/forum/{forum_id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteTopicForum(@PathVariable Integer topic_id, @PathVariable Integer related_forum_id) {
+		topicService.deleteTopicForum(topic_id, related_forum_id);
 	}
 
 	/**
@@ -300,14 +300,14 @@ public class TopicRestController {
 	}
 
 	/**
-	* Delete an existing Post entity
+	* Show all Post entities by Topic
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/deleteTopicPosts%7B60662039-a7ac-4c9b-8f16-b9081f1931d2%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/getTopicPosts%7B25f865b0-1c9f-4862-9a01-9a32ff02772f%7D/.properties.swoperation]
 	*/
-	@RequestMapping(value = "/Topic/{topic_id}/posts/{post_id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/Topic/{topic_id}/posts", method = RequestMethod.GET)
 	@ResponseBody
-	public void deleteTopicPosts(@PathVariable Integer topic_id, @PathVariable Integer related_posts_id) {
-		topicService.deleteTopicPosts(topic_id, related_posts_id);
+	public List<Post> getTopicPosts(@PathVariable Integer topic_id) {
+		return new java.util.ArrayList<Post>(topicDAO.findTopicByPrimaryKey(topic_id).getPosts());
 	}
 
 	/**
@@ -323,14 +323,14 @@ public class TopicRestController {
 	}
 
 	/**
-	* Create a new Host entity
+	* Delete an existing Topic entity
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/newTopicHost%7Bf45c0033-81b9-4342-b6de-56d14662d8b0%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/TopicRestController/deleteTopic%7B50391368-9439-49c8-aad6-51bac8c7fccf%7D/.properties.swoperation]
 	*/
-	@RequestMapping(value = "/Topic/{topic_id}/host", method = RequestMethod.POST)
+	@RequestMapping(value = "/Topic/{topic_id}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Host newTopicHost(@PathVariable Integer topic_id, @RequestBody Host host) {
-		topicService.saveTopicHost(topic_id, host);
-		return hostDAO.findHostByPrimaryKey(host.getId());
+	public void deleteTopic(@PathVariable Integer topic_id) {
+		Topic topic = topicDAO.findTopicByPrimaryKey(topic_id);
+		topicService.deleteTopic(topic);
 	}
 }

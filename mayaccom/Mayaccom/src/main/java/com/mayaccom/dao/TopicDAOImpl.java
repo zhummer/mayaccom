@@ -99,6 +99,30 @@ public class TopicDAOImpl extends AbstractJpaDao<Topic> implements TopicDAO {
 	}
 
 	/**
+	 * JPQL Query - findAllTopics
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findAllTopics.query]JPASelect
+	 */
+	@Transactional
+	public Set<Topic> findAllTopics() throws DataAccessException {
+
+		return findAllTopics(-1, -1);
+	}
+
+	/**
+	 * JPQL Query - findAllTopics
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findAllTopics.query]JPASelectWithPagination
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Topic> findAllTopics(int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findAllTopics", startResult, maxRows);
+		return new LinkedHashSet<Topic>(query.getResultList());
+	}
+
+	/**
 	 * JPQL Query - findTopicById
 	 *
 	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicById.query]JPASelect
@@ -126,74 +150,26 @@ public class TopicDAOImpl extends AbstractJpaDao<Topic> implements TopicDAO {
 	}
 
 	/**
-	 * JPQL Query - findTopicByLastPostAt
+	 * JPQL Query - findTopicByName
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByLastPostAt.query]JPASelect
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByName.query]JPASelect
 	 */
 	@Transactional
-	public Set<Topic> findTopicByLastPostAt(java.util.Calendar lastPostAt) throws DataAccessException {
+	public Set<Topic> findTopicByName(String name) throws DataAccessException {
 
-		return findTopicByLastPostAt(lastPostAt, -1, -1);
+		return findTopicByName(name, -1, -1);
 	}
 
 	/**
-	 * JPQL Query - findTopicByLastPostAt
+	 * JPQL Query - findTopicByName
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByLastPostAt.query]JPASelectWithPagination
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByName.query]JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public Set<Topic> findTopicByLastPostAt(java.util.Calendar lastPostAt, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findTopicByLastPostAt", startResult, maxRows, lastPostAt);
-		return new LinkedHashSet<Topic>(query.getResultList());
-	}
-
-	/**
-	 * JPQL Query - findAllTopics
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findAllTopics.query]JPASelect
-	 */
-	@Transactional
-	public Set<Topic> findAllTopics() throws DataAccessException {
-
-		return findAllTopics(-1, -1);
-	}
-
-	/**
-	 * JPQL Query - findAllTopics
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findAllTopics.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Topic> findAllTopics(int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findAllTopics", startResult, maxRows);
-		return new LinkedHashSet<Topic>(query.getResultList());
-	}
-
-	/**
-	 * JPQL Query - findTopicByNameContaining
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByNameContaining.query]JPASelect
-	 */
-	@Transactional
-	public Set<Topic> findTopicByNameContaining(String name) throws DataAccessException {
-
-		return findTopicByNameContaining(name, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findTopicByNameContaining
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByNameContaining.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Topic> findTopicByNameContaining(String name, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findTopicByNameContaining", startResult, maxRows, name);
+	public Set<Topic> findTopicByName(String name, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findTopicByName", startResult, maxRows, name);
 		return new LinkedHashSet<Topic>(query.getResultList());
 	}
 
@@ -225,26 +201,50 @@ public class TopicDAOImpl extends AbstractJpaDao<Topic> implements TopicDAO {
 	}
 
 	/**
-	 * JPQL Query - findTopicByName
+	 * JPQL Query - findTopicByLastPostAt
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByName.query]JPASelect
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByLastPostAt.query]JPASelect
 	 */
 	@Transactional
-	public Set<Topic> findTopicByName(String name) throws DataAccessException {
+	public Set<Topic> findTopicByLastPostAt(java.util.Calendar lastPostAt) throws DataAccessException {
 
-		return findTopicByName(name, -1, -1);
+		return findTopicByLastPostAt(lastPostAt, -1, -1);
 	}
 
 	/**
-	 * JPQL Query - findTopicByName
+	 * JPQL Query - findTopicByLastPostAt
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByName.query]JPASelectWithPagination
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByLastPostAt.query]JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public Set<Topic> findTopicByName(String name, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findTopicByName", startResult, maxRows, name);
+	public Set<Topic> findTopicByLastPostAt(java.util.Calendar lastPostAt, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findTopicByLastPostAt", startResult, maxRows, lastPostAt);
+		return new LinkedHashSet<Topic>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findTopicByNameContaining
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByNameContaining.query]JPASelect
+	 */
+	@Transactional
+	public Set<Topic> findTopicByNameContaining(String name) throws DataAccessException {
+
+		return findTopicByNameContaining(name, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findTopicByNameContaining
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/TopicDAO/findTopicByNameContaining.query]JPASelectWithPagination
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Topic> findTopicByNameContaining(String name, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findTopicByNameContaining", startResult, maxRows, name);
 		return new LinkedHashSet<Topic>(query.getResultList());
 	}
 

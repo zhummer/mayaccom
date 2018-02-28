@@ -60,10 +60,27 @@ public class ContentController {
 	private ContentService contentService;
 
 	/**
-	 * Delete an existing Accomodation entity
+	 * Save an existing Accomodation entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/deleteContentAccomodation%7Bcd6b416e-144b-4f9a-ba67-eb1e2c205772%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/saveContentAccomodation%7Be8bf01c4-859a-477e-9933-5d6f326fbb27%7D/.properties.swoperation]
 	 */
+	@RequestMapping("/saveContentAccomodation")
+	public ModelAndView saveContentAccomodation(@RequestParam Integer content_id, @ModelAttribute Accomodation accomodation) {
+		Content parent_content = contentService.saveContentAccomodation(content_id, accomodation);
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("content_id", content_id);
+		mav.addObject("content", parent_content);
+		mav.setViewName("content/viewContent.jsp");
+
+		return mav;
+	}
+
+	/**
+	* Delete an existing Accomodation entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/deleteContentAccomodation%7Bcd6b416e-144b-4f9a-ba67-eb1e2c205772%7D/.properties.swoperation]
+	*/
 	@RequestMapping("/deleteContentAccomodation")
 	public ModelAndView deleteContentAccomodation(@RequestParam Integer content_id, @RequestParam Integer related_accomodation_id) {
 		ModelAndView mav = new ModelAndView();
@@ -78,26 +95,6 @@ public class ContentController {
 	}
 
 	/**
-	* Entry point to show all Content entities
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/indexContent%7Bf2aae5cd-fa04-416c-9d4e-4743901fec5c%7D/.properties.swoperation]
-	*/
-	public String indexContent() {
-		return "redirect:/indexContent";
-	}
-
-	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/streamBinary%7B095b6294-cd3a-4d61-bedc-30fa6a494160%7D/.properties.swoperation]
-	*/
-	@RequestMapping("/contentController/binary.action")
-	public ModelAndView streamBinary(@ModelAttribute HttpServletRequest request, @ModelAttribute HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("streamedBinaryContentView");
-		return mav;
-
-	}
-
-	/**
 	* Create a new Content entity
 	* 
 	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/newContent%7B786de939-7bf5-4487-b946-1537ec0d9b6b%7D/.properties.swoperation]
@@ -109,22 +106,6 @@ public class ContentController {
 		mav.addObject("content", new Content());
 		mav.addObject("newFlag", true);
 		mav.setViewName("content/editContent.jsp");
-
-		return mav;
-	}
-
-	/**
-	* Create a new Accomodation entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/newContentAccomodation%7B37f8bcdd-bd96-406a-8df3-21bced436d2a%7D/.properties.swoperation]
-	*/
-	@RequestMapping("/newContentAccomodation")
-	public ModelAndView newContentAccomodation(@RequestParam Integer content_id) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("content_id", content_id);
-		mav.addObject("accomodation", new Accomodation());
-		mav.addObject("newFlag", true);
-		mav.setViewName("content/accomodation/editAccomodation.jsp");
 
 		return mav;
 	}
@@ -161,6 +142,17 @@ public class ContentController {
 	}
 
 	/**
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/streamBinary%7B095b6294-cd3a-4d61-bedc-30fa6a494160%7D/.properties.swoperation]
+	*/
+	@RequestMapping("/contentController/binary.action")
+	public ModelAndView streamBinary(@ModelAttribute HttpServletRequest request, @ModelAttribute HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("streamedBinaryContentView");
+		return mav;
+
+	}
+
+	/**
 	* Register custom, context-specific property editors
 	* 
 	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/initBinder%7B0e98dc78-1f39-455c-9e15-ac4f3f682c85%7D/.properties.swoperation]
@@ -180,77 +172,31 @@ public class ContentController {
 	}
 
 	/**
-	* Delete an existing Content entity
+	* Create a new Accomodation entity
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/deleteContent%7B2d24403b-5329-45f9-bacb-d3769e300252%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/newContentAccomodation%7B37f8bcdd-bd96-406a-8df3-21bced436d2a%7D/.properties.swoperation]
 	*/
-	@RequestMapping("/deleteContent")
-	public String deleteContent(@RequestParam Integer idKey) {
-		Content content = contentDAO.findContentByPrimaryKey(idKey);
-		contentService.deleteContent(content);
-		return "forward:/indexContent";
-	}
-
-	/**
-	* Edit an existing Accomodation entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/editContentAccomodation%7B1724fd7a-c370-4969-86ae-3cf3e640884f%7D/.properties.swoperation]
-	*/
-	@RequestMapping("/editContentAccomodation")
-	public ModelAndView editContentAccomodation(@RequestParam Integer content_id, @RequestParam Integer accomodation_id) {
-		Accomodation accomodation = accomodationDAO.findAccomodationByPrimaryKey(accomodation_id, -1, -1);
-
+	@RequestMapping("/newContentAccomodation")
+	public ModelAndView newContentAccomodation(@RequestParam Integer content_id) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("content_id", content_id);
-		mav.addObject("accomodation", accomodation);
+		mav.addObject("accomodation", new Accomodation());
+		mav.addObject("newFlag", true);
 		mav.setViewName("content/accomodation/editAccomodation.jsp");
 
 		return mav;
 	}
 
 	/**
-	* Show all Accomodation entities by Content
+	* Select an existing Content entity
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/listContentAccomodation%7B9e81c2b7-fb8f-45da-9843-5e0b47e732ec%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/selectContent%7Bf678e5da-9ea1-4487-80b0-2647916b302d%7D/.properties.swoperation]
 	*/
-	@RequestMapping("/listContentAccomodation")
-	public ModelAndView listContentAccomodation(@RequestParam Integer idKey) {
+	@RequestMapping("/selectContent")
+	public ModelAndView selectContent(@RequestParam Integer idKey) {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("content", contentDAO.findContentByPrimaryKey(idKey));
-		mav.setViewName("content/accomodation/listAccomodation.jsp");
-
-		return mav;
-	}
-
-	/**
-	* Show all Content entities
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/listContents%7B238a94fd-e8ef-4f35-87ca-14a21e8a0c67%7D/.properties.swoperation]
-	*/
-	@RequestMapping("/indexContent")
-	public ModelAndView listContents() {
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("contents", contentService.loadContents());
-
-		mav.setViewName("content/listContents.jsp");
-
-		return mav;
-	}
-
-	/**
-	* Save an existing Accomodation entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/saveContentAccomodation%7Be8bf01c4-859a-477e-9933-5d6f326fbb27%7D/.properties.swoperation]
-	*/
-	@RequestMapping("/saveContentAccomodation")
-	public ModelAndView saveContentAccomodation(@RequestParam Integer content_id, @ModelAttribute Accomodation accomodation) {
-		Content parent_content = contentService.saveContentAccomodation(content_id, accomodation);
-
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("content_id", content_id);
-		mav.addObject("content", parent_content);
 		mav.setViewName("content/viewContent.jsp");
 
 		return mav;
@@ -272,6 +218,75 @@ public class ContentController {
 	}
 
 	/**
+	* Edit an existing Accomodation entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/editContentAccomodation%7B1724fd7a-c370-4969-86ae-3cf3e640884f%7D/.properties.swoperation]
+	*/
+	@RequestMapping("/editContentAccomodation")
+	public ModelAndView editContentAccomodation(@RequestParam Integer content_id, @RequestParam Integer accomodation_id) {
+		Accomodation accomodation = accomodationDAO.findAccomodationByPrimaryKey(accomodation_id, -1, -1);
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("content_id", content_id);
+		mav.addObject("accomodation", accomodation);
+		mav.setViewName("content/accomodation/editAccomodation.jsp");
+
+		return mav;
+	}
+
+	/**
+	* Show all Content entities
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/listContents%7B238a94fd-e8ef-4f35-87ca-14a21e8a0c67%7D/.properties.swoperation]
+	*/
+	@RequestMapping("/indexContent")
+	public ModelAndView listContents() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("contents", contentService.loadContents());
+
+		mav.setViewName("content/listContents.jsp");
+
+		return mav;
+	}
+
+	/**
+	* Entry point to show all Content entities
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/indexContent%7Bf2aae5cd-fa04-416c-9d4e-4743901fec5c%7D/.properties.swoperation]
+	*/
+	public String indexContent() {
+		return "redirect:/indexContent";
+	}
+
+	/**
+	* Delete an existing Content entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/deleteContent%7B2d24403b-5329-45f9-bacb-d3769e300252%7D/.properties.swoperation]
+	*/
+	@RequestMapping("/deleteContent")
+	public String deleteContent(@RequestParam Integer idKey) {
+		Content content = contentDAO.findContentByPrimaryKey(idKey);
+		contentService.deleteContent(content);
+		return "forward:/indexContent";
+	}
+
+	/**
+	* Show all Accomodation entities by Content
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/listContentAccomodation%7B9e81c2b7-fb8f-45da-9843-5e0b47e732ec%7D/.properties.swoperation]
+	*/
+	@RequestMapping("/listContentAccomodation")
+	public ModelAndView listContentAccomodation(@RequestParam Integer idKey) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("content", contentDAO.findContentByPrimaryKey(idKey));
+		mav.setViewName("content/accomodation/listAccomodation.jsp");
+
+		return mav;
+	}
+
+	/**
 	* View an existing Accomodation entity
 	* 
 	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/selectContentAccomodation%7Bd5c0109f-45f6-4a69-9d39-14fb02308041%7D/.properties.swoperation]
@@ -284,21 +299,6 @@ public class ContentController {
 		mav.addObject("content_id", content_id);
 		mav.addObject("accomodation", accomodation);
 		mav.setViewName("content/accomodation/viewAccomodation.jsp");
-
-		return mav;
-	}
-
-	/**
-	* Select an existing Content entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/ContentController/selectContent%7Bf678e5da-9ea1-4487-80b0-2647916b302d%7D/.properties.swoperation]
-	*/
-	@RequestMapping("/selectContent")
-	public ModelAndView selectContent(@RequestParam Integer idKey) {
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("content", contentDAO.findContentByPrimaryKey(idKey));
-		mav.setViewName("content/viewContent.jsp");
 
 		return mav;
 	}

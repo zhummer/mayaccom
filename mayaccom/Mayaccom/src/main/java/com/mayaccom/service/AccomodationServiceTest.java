@@ -84,6 +84,43 @@ public class AccomodationServiceTest {
 
 	/**
 	 * Operation Unit Test
+	* @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void findAccomodationByPrimaryKey() {
+		// TODO: JUnit - Populate test inputs for operation: findAccomodationByPrimaryKey 
+		Integer id = 0;
+		Accomodation response = null;
+		response = service.findAccomodationByPrimaryKey(id);
+		// TODO: JUnit - Add assertions to test outputs of operation: findAccomodationByPrimaryKey
+	}
+
+	/**
+	 * Operation Unit Test
+	* Delete an existing Host entity
+	* 
+	* @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void deleteAccomodationHost() {
+		// TODO: JUnit - Populate test inputs for operation: deleteAccomodationHost 
+		Integer accomodation_id = 0;
+		Integer related_host_id = 0;
+		Accomodation response = null;
+		response = service.deleteAccomodationHost(accomodation_id, related_host_id);
+		// TODO: JUnit - Add assertions to test outputs of operation: deleteAccomodationHost
+	}
+
+	/**
+	 * Operation Unit Test
 	* Return a count of all Accomodation entity
 	* 
 	* @generated
@@ -112,10 +149,10 @@ public class AccomodationServiceTest {
 	@Test
 	public void saveAccomodationContents() {
 		// TODO: JUnit - Populate test inputs for operation: saveAccomodationContents 
-		Integer id = 0;
+		Integer id_1 = 0;
 		Content related_contents = new com.mayaccom.domain.Content();
 		Accomodation response = null;
-		response = service.saveAccomodationContents(id, related_contents);
+		response = service.saveAccomodationContents(id_1, related_contents);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveAccomodationContents
 	}
 
@@ -141,7 +178,7 @@ public class AccomodationServiceTest {
 
 	/**
 	 * Operation Unit Test
-	* Delete an existing Accomodation entity
+	* Save an existing Accomodation entity
 	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -150,15 +187,15 @@ public class AccomodationServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void deleteAccomodation() {
-		// TODO: JUnit - Populate test inputs for operation: deleteAccomodation 
+	public void saveAccomodation() {
+		// TODO: JUnit - Populate test inputs for operation: saveAccomodation 
 		Accomodation accomodation = new com.mayaccom.domain.Accomodation();
-		service.deleteAccomodation(accomodation);
+		service.saveAccomodation(accomodation);
 	}
 
 	/**
 	 * Operation Unit Test
-	* Delete an existing Host entity
+	* Save an existing Host entity
 	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -167,13 +204,13 @@ public class AccomodationServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void deleteAccomodationHost() {
-		// TODO: JUnit - Populate test inputs for operation: deleteAccomodationHost 
-		Integer accomodation_id = 0;
-		Integer related_host_id = 0;
+	public void saveAccomodationHost() {
+		// TODO: JUnit - Populate test inputs for operation: saveAccomodationHost 
+		Integer id_2 = 0;
+		Host related_host = new com.mayaccom.domain.Host();
 		Accomodation response = null;
-		response = service.deleteAccomodationHost(accomodation_id, related_host_id);
-		// TODO: JUnit - Add assertions to test outputs of operation: deleteAccomodationHost
+		response = service.saveAccomodationHost(id_2, related_host);
+		// TODO: JUnit - Add assertions to test outputs of operation: saveAccomodationHost
 	}
 
 	/**
@@ -195,7 +232,7 @@ public class AccomodationServiceTest {
 
 	/**
 	 * Operation Unit Test
-	* Save an existing Host entity
+	* Delete an existing Accomodation entity
 	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -204,30 +241,10 @@ public class AccomodationServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void saveAccomodationHost() {
-		// TODO: JUnit - Populate test inputs for operation: saveAccomodationHost 
-		Integer id_1 = 0;
-		Host related_host = new com.mayaccom.domain.Host();
-		Accomodation response = null;
-		response = service.saveAccomodationHost(id_1, related_host);
-		// TODO: JUnit - Add assertions to test outputs of operation: saveAccomodationHost
-	}
-
-	/**
-	 * Operation Unit Test
-	* Save an existing Accomodation entity
-	* 
-	* @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void saveAccomodation() {
-		// TODO: JUnit - Populate test inputs for operation: saveAccomodation 
+	public void deleteAccomodation() {
+		// TODO: JUnit - Populate test inputs for operation: deleteAccomodation 
 		Accomodation accomodation_1 = new com.mayaccom.domain.Accomodation();
-		service.saveAccomodation(accomodation_1);
+		service.deleteAccomodation(accomodation_1);
 	}
 
 	/**
@@ -248,23 +265,6 @@ public class AccomodationServiceTest {
 		Accomodation response = null;
 		response = service.deleteAccomodationContents(accomodation_id_1, related_contents_id);
 		// TODO: JUnit - Add assertions to test outputs of operation: deleteAccomodationContents
-	}
-
-	/**
-	 * Operation Unit Test
-	* @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void findAccomodationByPrimaryKey() {
-		// TODO: JUnit - Populate test inputs for operation: findAccomodationByPrimaryKey 
-		Integer id_2 = 0;
-		Accomodation response = null;
-		response = service.findAccomodationByPrimaryKey(id_2);
-		// TODO: JUnit - Add assertions to test outputs of operation: findAccomodationByPrimaryKey
 	}
 
 	/**

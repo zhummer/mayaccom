@@ -63,6 +63,38 @@ public class AccomodationServiceImpl implements AccomodationService {
 	}
 
 	/**
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/findAccomodationByPrimaryKey%7Bb69a3065-18e6-4c4b-ac79-7f69579677a2%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Accomodation findAccomodationByPrimaryKey(Integer id) {
+		return accomodationDAO.findAccomodationByPrimaryKey(id);
+	}
+
+	/**
+	 * Delete an existing Host entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/deleteAccomodationHost%7B5a9ed9e7-bbf2-442d-8dba-da7c51cfabb6%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Accomodation deleteAccomodationHost(Integer accomodation_id, Integer related_host_id) {
+		Accomodation accomodation = accomodationDAO.findAccomodationByPrimaryKey(accomodation_id, -1, -1);
+		Host related_host = hostDAO.findHostByPrimaryKey(related_host_id, -1, -1);
+
+		accomodation.setHost(null);
+		related_host.getAccomodations().remove(accomodation);
+		accomodation = accomodationDAO.store(accomodation);
+		accomodationDAO.flush();
+
+		related_host = hostDAO.store(related_host);
+		hostDAO.flush();
+
+		hostDAO.remove(related_host);
+		hostDAO.flush();
+
+		return accomodation;
+	}
+
+	/**
 	 * Return a count of all Accomodation entity
 	 * 
 	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/countAccomodations%7Bf118057a-2d9b-464d-822b-4b23ff8121ea%7D/.properties.swoperation]
@@ -112,48 +144,32 @@ public class AccomodationServiceImpl implements AccomodationService {
 	}
 
 	/**
-	 * Delete an existing Accomodation entity
+	 * Save an existing Accomodation entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/deleteAccomodation%7B379978f8-54cd-4f7c-8df2-543125612289%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/saveAccomodation%7Bf9c97701-cb2a-48e9-a32b-dc9cc6e4dac6%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public void deleteAccomodation(Accomodation accomodation) {
-		accomodationDAO.remove(accomodation);
+	public void saveAccomodation(Accomodation accomodation) {
+		Accomodation existingAccomodation = accomodationDAO.findAccomodationByPrimaryKey(accomodation.getId());
+
+		if (existingAccomodation != null) {
+			if (existingAccomodation != accomodation) {
+				existingAccomodation.setId(accomodation.getId());
+				existingAccomodation.setName(accomodation.getName());
+				existingAccomodation.setAddress(accomodation.getAddress());
+				existingAccomodation.setCity(accomodation.getCity());
+				existingAccomodation.setZipCode(accomodation.getZipCode());
+				existingAccomodation.setCapacity(accomodation.getCapacity());
+				existingAccomodation.setLink1(accomodation.getLink1());
+				existingAccomodation.setLink2(accomodation.getLink2());
+				existingAccomodation.setLink3(accomodation.getLink3());
+				existingAccomodation.setAreaM2(accomodation.getAreaM2());
+			}
+			accomodation = accomodationDAO.store(existingAccomodation);
+		} else {
+			accomodation = accomodationDAO.store(accomodation);
+		}
 		accomodationDAO.flush();
-	}
-
-	/**
-	 * Delete an existing Host entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/deleteAccomodationHost%7B5a9ed9e7-bbf2-442d-8dba-da7c51cfabb6%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Accomodation deleteAccomodationHost(Integer accomodation_id, Integer related_host_id) {
-		Accomodation accomodation = accomodationDAO.findAccomodationByPrimaryKey(accomodation_id, -1, -1);
-		Host related_host = hostDAO.findHostByPrimaryKey(related_host_id, -1, -1);
-
-		accomodation.setHost(null);
-		related_host.getAccomodations().remove(accomodation);
-		accomodation = accomodationDAO.store(accomodation);
-		accomodationDAO.flush();
-
-		related_host = hostDAO.store(related_host);
-		hostDAO.flush();
-
-		hostDAO.remove(related_host);
-		hostDAO.flush();
-
-		return accomodation;
-	}
-
-	/**
-	 * Load an existing Accomodation entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/loadAccomodations%7Bf7dfaa6b-31f3-47e0-8fdf-a7a3289bdf37%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Set<Accomodation> loadAccomodations() {
-		return accomodationDAO.findAllAccomodations();
 	}
 
 	/**
@@ -194,31 +210,23 @@ public class AccomodationServiceImpl implements AccomodationService {
 	}
 
 	/**
-	 * Save an existing Accomodation entity
+	 * Load an existing Accomodation entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/saveAccomodation%7Bf9c97701-cb2a-48e9-a32b-dc9cc6e4dac6%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/loadAccomodations%7Bf7dfaa6b-31f3-47e0-8fdf-a7a3289bdf37%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public void saveAccomodation(Accomodation accomodation) {
-		Accomodation existingAccomodation = accomodationDAO.findAccomodationByPrimaryKey(accomodation.getId());
+	public Set<Accomodation> loadAccomodations() {
+		return accomodationDAO.findAllAccomodations();
+	}
 
-		if (existingAccomodation != null) {
-			if (existingAccomodation != accomodation) {
-				existingAccomodation.setId(accomodation.getId());
-				existingAccomodation.setName(accomodation.getName());
-				existingAccomodation.setAddress(accomodation.getAddress());
-				existingAccomodation.setCity(accomodation.getCity());
-				existingAccomodation.setZipCode(accomodation.getZipCode());
-				existingAccomodation.setCapacity(accomodation.getCapacity());
-				existingAccomodation.setLink1(accomodation.getLink1());
-				existingAccomodation.setLink2(accomodation.getLink2());
-				existingAccomodation.setLink3(accomodation.getLink3());
-				existingAccomodation.setAreaM2(accomodation.getAreaM2());
-			}
-			accomodation = accomodationDAO.store(existingAccomodation);
-		} else {
-			accomodation = accomodationDAO.store(accomodation);
-		}
+	/**
+	 * Delete an existing Accomodation entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/deleteAccomodation%7B379978f8-54cd-4f7c-8df2-543125612289%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public void deleteAccomodation(Accomodation accomodation) {
+		accomodationDAO.remove(accomodation);
 		accomodationDAO.flush();
 	}
 
@@ -240,13 +248,5 @@ public class AccomodationServiceImpl implements AccomodationService {
 		contentDAO.flush();
 
 		return accomodation;
-	}
-
-	/**
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/AccomodationService/findAccomodationByPrimaryKey%7Bb69a3065-18e6-4c4b-ac79-7f69579677a2%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Accomodation findAccomodationByPrimaryKey(Integer id) {
-		return accomodationDAO.findAccomodationByPrimaryKey(id);
 	}
 }

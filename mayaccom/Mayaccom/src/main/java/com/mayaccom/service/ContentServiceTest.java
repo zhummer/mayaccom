@@ -83,7 +83,7 @@ public class ContentServiceTest {
 
 	/**
 	 * Operation Unit Test
-	* Save an existing Accomodation entity
+	* Delete an existing Content entity
 	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -92,13 +92,10 @@ public class ContentServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void saveContentAccomodation() {
-		// TODO: JUnit - Populate test inputs for operation: saveContentAccomodation 
-		Integer id = 0;
-		Accomodation related_accomodation = new com.mayaccom.domain.Accomodation();
-		Content response = null;
-		response = service.saveContentAccomodation(id, related_accomodation);
-		// TODO: JUnit - Add assertions to test outputs of operation: saveContentAccomodation
+	public void deleteContent() {
+		// TODO: JUnit - Populate test inputs for operation: deleteContent 
+		Content content = new com.mayaccom.domain.Content();
+		service.deleteContent(content);
 	}
 
 	/**
@@ -120,7 +117,7 @@ public class ContentServiceTest {
 
 	/**
 	 * Operation Unit Test
-	* Delete an existing Content entity
+	* Load an existing Content entity
 	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -129,16 +126,14 @@ public class ContentServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void deleteContent() {
-		// TODO: JUnit - Populate test inputs for operation: deleteContent 
-		Content content = new com.mayaccom.domain.Content();
-		service.deleteContent(content);
+	public void loadContents() {
+		Set<Content> response = null;
+		response = service.loadContents();
+		// TODO: JUnit - Add assertions to test outputs of operation: loadContents
 	}
 
 	/**
 	 * Operation Unit Test
-	* Save an existing Content entity
-	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
 	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
@@ -146,10 +141,12 @@ public class ContentServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void saveContent() {
-		// TODO: JUnit - Populate test inputs for operation: saveContent 
-		Content content_1 = new com.mayaccom.domain.Content();
-		service.saveContent(content_1);
+	public void findContentByPrimaryKey() {
+		// TODO: JUnit - Populate test inputs for operation: findContentByPrimaryKey 
+		Integer id = 0;
+		Content response = null;
+		response = service.findContentByPrimaryKey(id);
+		// TODO: JUnit - Add assertions to test outputs of operation: findContentByPrimaryKey
 	}
 
 	/**
@@ -194,24 +191,7 @@ public class ContentServiceTest {
 
 	/**
 	 * Operation Unit Test
-	* @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void findContentByPrimaryKey() {
-		// TODO: JUnit - Populate test inputs for operation: findContentByPrimaryKey 
-		Integer id_1 = 0;
-		Content response = null;
-		response = service.findContentByPrimaryKey(id_1);
-		// TODO: JUnit - Add assertions to test outputs of operation: findContentByPrimaryKey
-	}
-
-	/**
-	 * Operation Unit Test
-	* Load an existing Content entity
+	* Save an existing Accomodation entity
 	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -220,10 +200,30 @@ public class ContentServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void loadContents() {
-		Set<Content> response = null;
-		response = service.loadContents();
-		// TODO: JUnit - Add assertions to test outputs of operation: loadContents
+	public void saveContentAccomodation() {
+		// TODO: JUnit - Populate test inputs for operation: saveContentAccomodation 
+		Integer id_1 = 0;
+		Accomodation related_accomodation = new com.mayaccom.domain.Accomodation();
+		Content response = null;
+		response = service.saveContentAccomodation(id_1, related_accomodation);
+		// TODO: JUnit - Add assertions to test outputs of operation: saveContentAccomodation
+	}
+
+	/**
+	 * Operation Unit Test
+	* Save an existing Content entity
+	* 
+	* @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void saveContent() {
+		// TODO: JUnit - Populate test inputs for operation: saveContent 
+		Content content_1 = new com.mayaccom.domain.Content();
+		service.saveContent(content_1);
 	}
 
 	/**

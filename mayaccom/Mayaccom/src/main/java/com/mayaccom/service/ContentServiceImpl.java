@@ -53,39 +53,14 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	/**
-	 * Save an existing Accomodation entity
+	 * Delete an existing Content entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/saveContentAccomodation%7Bef62b737-34bd-40ee-8ebb-f3b2fd3aff22%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/deleteContent%7B8d2ab10c-3240-453e-8811-509841f27893%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public Content saveContentAccomodation(Integer id, Accomodation related_accomodation) {
-		Content content = contentDAO.findContentByPrimaryKey(id, -1, -1);
-		Accomodation existingaccomodation = accomodationDAO.findAccomodationByPrimaryKey(related_accomodation.getId());
-
-		// copy into the existing record to preserve existing relationships
-		if (existingaccomodation != null) {
-			existingaccomodation.setId(related_accomodation.getId());
-			existingaccomodation.setName(related_accomodation.getName());
-			existingaccomodation.setAddress(related_accomodation.getAddress());
-			existingaccomodation.setCity(related_accomodation.getCity());
-			existingaccomodation.setZipCode(related_accomodation.getZipCode());
-			existingaccomodation.setCapacity(related_accomodation.getCapacity());
-			existingaccomodation.setLink1(related_accomodation.getLink1());
-			existingaccomodation.setLink2(related_accomodation.getLink2());
-			existingaccomodation.setLink3(related_accomodation.getLink3());
-			existingaccomodation.setAreaM2(related_accomodation.getAreaM2());
-			related_accomodation = existingaccomodation;
-		}
-
-		content.setAccomodation(related_accomodation);
-		related_accomodation.getContents().add(content);
-		content = contentDAO.store(content);
+	public void deleteContent(Content content) {
+		contentDAO.remove(content);
 		contentDAO.flush();
-
-		related_accomodation = accomodationDAO.store(related_accomodation);
-		accomodationDAO.flush();
-
-		return content;
 	}
 
 	/**
@@ -99,36 +74,21 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	/**
-	 * Delete an existing Content entity
+	 * Load an existing Content entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/deleteContent%7B8d2ab10c-3240-453e-8811-509841f27893%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/loadContents%7B226a4d8a-84ad-4f0c-98f7-7c63c5e33228%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public void deleteContent(Content content) {
-		contentDAO.remove(content);
-		contentDAO.flush();
+	public Set<Content> loadContents() {
+		return contentDAO.findAllContents();
 	}
 
 	/**
-	 * Save an existing Content entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/saveContent%7B05339efd-245c-4fd7-acd3-6d1ff71c686e%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/findContentByPrimaryKey%7B04dd0c9e-56bf-4a31-a3ed-48fd4b9d0562%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public void saveContent(Content content) {
-		Content existingContent = contentDAO.findContentByPrimaryKey(content.getId());
-
-		if (existingContent != null) {
-			if (existingContent != content) {
-				existingContent.setId(content.getId());
-				existingContent.setEditorContent(content.getEditorContent());
-				existingContent.setContentName(content.getContentName());
-			}
-			content = contentDAO.store(existingContent);
-		} else {
-			content = contentDAO.store(content);
-		}
-		contentDAO.flush();
+	public Content findContentByPrimaryKey(Integer id) {
+		return contentDAO.findContentByPrimaryKey(id);
 	}
 
 	/**
@@ -166,20 +126,60 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	/**
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/findContentByPrimaryKey%7B04dd0c9e-56bf-4a31-a3ed-48fd4b9d0562%7D/.properties.swoperation]
+	 * Save an existing Accomodation entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/saveContentAccomodation%7Bef62b737-34bd-40ee-8ebb-f3b2fd3aff22%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public Content findContentByPrimaryKey(Integer id) {
-		return contentDAO.findContentByPrimaryKey(id);
+	public Content saveContentAccomodation(Integer id, Accomodation related_accomodation) {
+		Content content = contentDAO.findContentByPrimaryKey(id, -1, -1);
+		Accomodation existingaccomodation = accomodationDAO.findAccomodationByPrimaryKey(related_accomodation.getId());
+
+		// copy into the existing record to preserve existing relationships
+		if (existingaccomodation != null) {
+			existingaccomodation.setId(related_accomodation.getId());
+			existingaccomodation.setName(related_accomodation.getName());
+			existingaccomodation.setAddress(related_accomodation.getAddress());
+			existingaccomodation.setCity(related_accomodation.getCity());
+			existingaccomodation.setZipCode(related_accomodation.getZipCode());
+			existingaccomodation.setCapacity(related_accomodation.getCapacity());
+			existingaccomodation.setLink1(related_accomodation.getLink1());
+			existingaccomodation.setLink2(related_accomodation.getLink2());
+			existingaccomodation.setLink3(related_accomodation.getLink3());
+			existingaccomodation.setAreaM2(related_accomodation.getAreaM2());
+			related_accomodation = existingaccomodation;
+		}
+
+		content.setAccomodation(related_accomodation);
+		related_accomodation.getContents().add(content);
+		content = contentDAO.store(content);
+		contentDAO.flush();
+
+		related_accomodation = accomodationDAO.store(related_accomodation);
+		accomodationDAO.flush();
+
+		return content;
 	}
 
 	/**
-	 * Load an existing Content entity
+	 * Save an existing Content entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/loadContents%7B226a4d8a-84ad-4f0c-98f7-7c63c5e33228%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/ContentService/saveContent%7B05339efd-245c-4fd7-acd3-6d1ff71c686e%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public Set<Content> loadContents() {
-		return contentDAO.findAllContents();
+	public void saveContent(Content content) {
+		Content existingContent = contentDAO.findContentByPrimaryKey(content.getId());
+
+		if (existingContent != null) {
+			if (existingContent != content) {
+				existingContent.setId(content.getId());
+				existingContent.setEditorContent(content.getEditorContent());
+				existingContent.setContentName(content.getContentName());
+			}
+			content = contentDAO.store(existingContent);
+		} else {
+			content = contentDAO.store(content);
+		}
+		contentDAO.flush();
 	}
 }

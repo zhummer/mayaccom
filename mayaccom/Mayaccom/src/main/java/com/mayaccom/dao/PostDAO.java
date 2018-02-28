@@ -19,20 +19,6 @@ import org.springframework.dao.DataAccessException;
 public interface PostDAO extends JpaDao<Post> {
 
 	/**
-	 * JPQL Query - findPostByContent
-	 *
-	* @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByContent.query]JPASelect
-	 */
-	public Set<Post> findPostByContent(String content1) throws DataAccessException;
-
-	/**
-	 * JPQL Query - findPostByContent
-	 *
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByContent.query]JPASelectWithPagination
-	 */
-	public Set<Post> findPostByContent(String content1, int startResult, int maxRows) throws DataAccessException;
-
-	/**
 	 * JPQL Query - findPostById
 	 *
 	* @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostById.query]JPASelect
@@ -47,18 +33,18 @@ public interface PostDAO extends JpaDao<Post> {
 	public Post findPostById(Integer id, int startResult, int maxRows) throws DataAccessException;
 
 	/**
-	 * JPQL Query - findPostByPrimaryKey
+	 * JPQL Query - findPostByContent
 	 *
-	* @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByPrimaryKey.query]JPASelect
+	* @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByContent.query]JPASelect
 	 */
-	public Post findPostByPrimaryKey(Integer id_1) throws DataAccessException;
+	public Set<Post> findPostByContent(String content1) throws DataAccessException;
 
 	/**
-	 * JPQL Query - findPostByPrimaryKey
+	 * JPQL Query - findPostByContent
 	 *
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByPrimaryKey.query]JPASelectWithPagination
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByContent.query]JPASelectWithPagination
 	 */
-	public Post findPostByPrimaryKey(Integer id_1, int startResult, int maxRows) throws DataAccessException;
+	public Set<Post> findPostByContent(String content1, int startResult, int maxRows) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findAllPosts
@@ -73,5 +59,19 @@ public interface PostDAO extends JpaDao<Post> {
 	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findAllPosts.query]JPASelectWithPagination
 	 */
 	public Set<Post> findAllPosts(int startResult, int maxRows) throws DataAccessException;
+
+	/**
+	 * JPQL Query - findPostByPrimaryKey
+	 *
+	* @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByPrimaryKey.query]JPASelect
+	 */
+	public Post findPostByPrimaryKey(Integer id_1) throws DataAccessException;
+
+	/**
+	 * JPQL Query - findPostByPrimaryKey
+	 *
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/PostDAO/findPostByPrimaryKey.query]JPASelectWithPagination
+	 */
+	public Post findPostByPrimaryKey(Integer id_1, int startResult, int maxRows) throws DataAccessException;
 
 }

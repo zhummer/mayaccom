@@ -81,26 +81,51 @@ public class HostRestController {
 	private HostService hostService;
 
 	/**
-	 * Select an existing Host entity
+	 * Save an existing Post entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/loadHost%7B02fd3d62-41d2-4f0d-9ae7-2a9673822ebb%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/saveHostPosts%7B75192626-3bfb-47f2-920e-053f496b1a70%7D/.properties.swoperation]
 	 */
-	@RequestMapping(value = "/Host/{host_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/Host/{host_id}/posts", method = RequestMethod.PUT)
 	@ResponseBody
-	public Host loadHost(@PathVariable Integer host_id) {
-		return hostDAO.findHostByPrimaryKey(host_id);
+	public Post saveHostPosts(@PathVariable Integer host_id, @RequestBody Post posts) {
+		hostService.saveHostPosts(host_id, posts);
+		return postDAO.findPostByPrimaryKey(posts.getId());
 	}
 
 	/**
-	* Create a new Accomodation entity
+	* View an existing Post entity
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/newHostAccomodations%7B110c84eb-fc40-4a4a-bbb8-1fad5da24cee%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/loadHostPosts%7Ba95fa066-839a-462b-b235-54c6aa5c6b36%7D/.properties.swoperation]
 	*/
-	@RequestMapping(value = "/Host/{host_id}/accomodations", method = RequestMethod.POST)
+	@RequestMapping(value = "/Host/{host_id}/posts/{post_id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Accomodation newHostAccomodations(@PathVariable Integer host_id, @RequestBody Accomodation accomodation) {
-		hostService.saveHostAccomodations(host_id, accomodation);
-		return accomodationDAO.findAccomodationByPrimaryKey(accomodation.getId());
+	public Post loadHostPosts(@PathVariable Integer host_id, @PathVariable Integer related_posts_id) {
+		Post post = postDAO.findPostByPrimaryKey(related_posts_id, -1, -1);
+
+		return post;
+	}
+
+	/**
+	* Show all Accomodation entities by Host
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/getHostAccomodations%7B3d92c0d5-c54d-4e23-be13-dbe4f6a1ac3c%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}/accomodations", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Accomodation> getHostAccomodations(@PathVariable Integer host_id) {
+		return new java.util.ArrayList<Accomodation>(hostDAO.findHostByPrimaryKey(host_id).getAccomodations());
+	}
+
+	/**
+	* Delete an existing Host entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/deleteHost%7Ba378f183-91c6-4eb0-b55a-d8fee114174f%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteHost(@PathVariable Integer host_id) {
+		Host host = hostDAO.findHostByPrimaryKey(host_id);
+		hostService.deleteHost(host);
 	}
 
 	/**
@@ -129,87 +154,6 @@ public class HostRestController {
 	}
 
 	/**
-	* View an existing Post entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/loadHostPosts%7Ba95fa066-839a-462b-b235-54c6aa5c6b36%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}/posts/{post_id}", method = RequestMethod.GET)
-	@ResponseBody
-	public Post loadHostPosts(@PathVariable Integer host_id, @PathVariable Integer related_posts_id) {
-		Post post = postDAO.findPostByPrimaryKey(related_posts_id, -1, -1);
-
-		return post;
-	}
-
-	/**
-	* Create a new Host entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/newHost%7B912f8ef0-0086-4122-823d-dbdf0b4c0f9d%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host", method = RequestMethod.POST)
-	@ResponseBody
-	public Host newHost(@RequestBody Host host) {
-		hostService.saveHost(host);
-		return hostDAO.findHostByPrimaryKey(host.getId());
-	}
-
-	/**
-	* Show all Accomodation entities by Host
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/getHostAccomodations%7B3d92c0d5-c54d-4e23-be13-dbe4f6a1ac3c%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}/accomodations", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Accomodation> getHostAccomodations(@PathVariable Integer host_id) {
-		return new java.util.ArrayList<Accomodation>(hostDAO.findHostByPrimaryKey(host_id).getAccomodations());
-	}
-
-	/**
-	* Show all Host entities
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/listHosts%7Bf10510fa-01c6-417c-96cb-7f9768b7adf6%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Host> listHosts() {
-		return new java.util.ArrayList<Host>(hostService.loadHosts());
-	}
-
-	/**
-	* Show all Topic entities by Host
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/getHostTopics%7Beb94ea72-9b3a-4403-bed2-86ae7dcfb49b%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}/topics", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Topic> getHostTopics(@PathVariable Integer host_id) {
-		return new java.util.ArrayList<Topic>(hostDAO.findHostByPrimaryKey(host_id).getTopics());
-	}
-
-	/**
-	* Delete an existing Accomodation entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/deleteHostAccomodations%7Ba82a47e9-7f33-419f-aa74-0f31dcf8a542%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}/accomodations/{accomodation_id}", method = RequestMethod.DELETE)
-	@ResponseBody
-	public void deleteHostAccomodations(@PathVariable Integer host_id, @PathVariable Integer related_accomodations_id) {
-		hostService.deleteHostAccomodations(host_id, related_accomodations_id);
-	}
-
-	/**
-	* Save an existing Post entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/saveHostPosts%7B75192626-3bfb-47f2-920e-053f496b1a70%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}/posts", method = RequestMethod.PUT)
-	@ResponseBody
-	public Post saveHostPosts(@PathVariable Integer host_id, @RequestBody Post posts) {
-		hostService.saveHostPosts(host_id, posts);
-		return postDAO.findPostByPrimaryKey(posts.getId());
-	}
-
-	/**
 	* Delete an existing Post entity
 	* 
 	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/deleteHostPosts%7Bb81cc3f6-fdab-41fb-b6e0-776247ba1990%7D/.properties.swoperation]
@@ -218,6 +162,29 @@ public class HostRestController {
 	@ResponseBody
 	public void deleteHostPosts(@PathVariable Integer host_id, @PathVariable Integer related_posts_id) {
 		hostService.deleteHostPosts(host_id, related_posts_id);
+	}
+
+	/**
+	* Create a new Post entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/newHostPosts%7B559efda8-dadb-4262-b200-3c98b2394d1c%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}/posts", method = RequestMethod.POST)
+	@ResponseBody
+	public Post newHostPosts(@PathVariable Integer host_id, @RequestBody Post post) {
+		hostService.saveHostPosts(host_id, post);
+		return postDAO.findPostByPrimaryKey(post.getId());
+	}
+
+	/**
+	* Select an existing Host entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/loadHost%7B02fd3d62-41d2-4f0d-9ae7-2a9673822ebb%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Host loadHost(@PathVariable Integer host_id) {
+		return hostDAO.findHostByPrimaryKey(host_id);
 	}
 
 	/**
@@ -233,30 +200,6 @@ public class HostRestController {
 	}
 
 	/**
-	* Delete an existing Host entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/deleteHost%7Ba378f183-91c6-4eb0-b55a-d8fee114174f%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}", method = RequestMethod.DELETE)
-	@ResponseBody
-	public void deleteHost(@PathVariable Integer host_id) {
-		Host host = hostDAO.findHostByPrimaryKey(host_id);
-		hostService.deleteHost(host);
-	}
-
-	/**
-	* Save an existing Accomodation entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/saveHostAccomodations%7Ba72c9c2e-103c-4e64-92ff-029f3811c7ff%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}/accomodations", method = RequestMethod.PUT)
-	@ResponseBody
-	public Accomodation saveHostAccomodations(@PathVariable Integer host_id, @RequestBody Accomodation accomodations) {
-		hostService.saveHostAccomodations(host_id, accomodations);
-		return accomodationDAO.findAccomodationByPrimaryKey(accomodations.getId());
-	}
-
-	/**
 	* Save an existing Topic entity
 	* 
 	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/saveHostTopics%7Beb8562c7-74d6-49e2-9f70-dce2c942a17a%7D/.properties.swoperation]
@@ -266,17 +209,6 @@ public class HostRestController {
 	public Topic saveHostTopics(@PathVariable Integer host_id, @RequestBody Topic topics) {
 		hostService.saveHostTopics(host_id, topics);
 		return topicDAO.findTopicByPrimaryKey(topics.getId());
-	}
-
-	/**
-	* Show all Post entities by Host
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/getHostPosts%7B81fc7770-dba0-4659-b69c-0d034e08cb29%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}/posts", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Post> getHostPosts(@PathVariable Integer host_id) {
-		return new java.util.ArrayList<Post>(hostDAO.findHostByPrimaryKey(host_id).getPosts());
 	}
 
 	/**
@@ -299,17 +231,6 @@ public class HostRestController {
 	}
 
 	/**
-	* Delete an existing Topic entity
-	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/deleteHostTopics%7B531f3277-baf2-44f5-8739-7846cdaee8b2%7D/.properties.swoperation]
-	*/
-	@RequestMapping(value = "/Host/{host_id}/topics/{topic_id}", method = RequestMethod.DELETE)
-	@ResponseBody
-	public void deleteHostTopics(@PathVariable Integer host_id, @PathVariable Integer related_topics_id) {
-		hostService.deleteHostTopics(host_id, related_topics_id);
-	}
-
-	/**
 	* View an existing Accomodation entity
 	* 
 	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/loadHostAccomodations%7B90a292d2-e77f-45ed-b804-cc160ade8989%7D/.properties.swoperation]
@@ -323,14 +244,93 @@ public class HostRestController {
 	}
 
 	/**
-	* Create a new Post entity
+	* Create a new Accomodation entity
 	* 
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/newHostPosts%7B559efda8-dadb-4262-b200-3c98b2394d1c%7D/.properties.swoperation]
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/newHostAccomodations%7B110c84eb-fc40-4a4a-bbb8-1fad5da24cee%7D/.properties.swoperation]
 	*/
-	@RequestMapping(value = "/Host/{host_id}/posts", method = RequestMethod.POST)
+	@RequestMapping(value = "/Host/{host_id}/accomodations", method = RequestMethod.POST)
 	@ResponseBody
-	public Post newHostPosts(@PathVariable Integer host_id, @RequestBody Post post) {
-		hostService.saveHostPosts(host_id, post);
-		return postDAO.findPostByPrimaryKey(post.getId());
+	public Accomodation newHostAccomodations(@PathVariable Integer host_id, @RequestBody Accomodation accomodation) {
+		hostService.saveHostAccomodations(host_id, accomodation);
+		return accomodationDAO.findAccomodationByPrimaryKey(accomodation.getId());
+	}
+
+	/**
+	* Save an existing Accomodation entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/saveHostAccomodations%7Ba72c9c2e-103c-4e64-92ff-029f3811c7ff%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}/accomodations", method = RequestMethod.PUT)
+	@ResponseBody
+	public Accomodation saveHostAccomodations(@PathVariable Integer host_id, @RequestBody Accomodation accomodations) {
+		hostService.saveHostAccomodations(host_id, accomodations);
+		return accomodationDAO.findAccomodationByPrimaryKey(accomodations.getId());
+	}
+
+	/**
+	* Delete an existing Accomodation entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/deleteHostAccomodations%7Ba82a47e9-7f33-419f-aa74-0f31dcf8a542%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}/accomodations/{accomodation_id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteHostAccomodations(@PathVariable Integer host_id, @PathVariable Integer related_accomodations_id) {
+		hostService.deleteHostAccomodations(host_id, related_accomodations_id);
+	}
+
+	/**
+	* Show all Host entities
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/listHosts%7Bf10510fa-01c6-417c-96cb-7f9768b7adf6%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Host> listHosts() {
+		return new java.util.ArrayList<Host>(hostService.loadHosts());
+	}
+
+	/**
+	* Create a new Host entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/newHost%7B912f8ef0-0086-4122-823d-dbdf0b4c0f9d%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host", method = RequestMethod.POST)
+	@ResponseBody
+	public Host newHost(@RequestBody Host host) {
+		hostService.saveHost(host);
+		return hostDAO.findHostByPrimaryKey(host.getId());
+	}
+
+	/**
+	* Show all Post entities by Host
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/getHostPosts%7B81fc7770-dba0-4659-b69c-0d034e08cb29%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}/posts", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Post> getHostPosts(@PathVariable Integer host_id) {
+		return new java.util.ArrayList<Post>(hostDAO.findHostByPrimaryKey(host_id).getPosts());
+	}
+
+	/**
+	* Delete an existing Topic entity
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/deleteHostTopics%7B531f3277-baf2-44f5-8739-7846cdaee8b2%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}/topics/{topic_id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteHostTopics(@PathVariable Integer host_id, @PathVariable Integer related_topics_id) {
+		hostService.deleteHostTopics(host_id, related_topics_id);
+	}
+
+	/**
+	* Show all Topic entities by Host
+	* 
+	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/web/rest/HostRestController/getHostTopics%7Beb94ea72-9b3a-4403-bed2-86ae7dcfb49b%7D/.properties.swoperation]
+	*/
+	@RequestMapping(value = "/Host/{host_id}/topics", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Topic> getHostTopics(@PathVariable Integer host_id) {
+		return new java.util.ArrayList<Topic>(hostDAO.findHostByPrimaryKey(host_id).getTopics());
 	}
 }

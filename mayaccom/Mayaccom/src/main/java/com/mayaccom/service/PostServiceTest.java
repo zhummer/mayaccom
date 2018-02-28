@@ -84,6 +84,43 @@ public class PostServiceTest {
 
 	/**
 	 * Operation Unit Test
+	* Load an existing Post entity
+	* 
+	* @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void loadPosts() {
+		Set<Post> response = null;
+		response = service.loadPosts();
+		// TODO: JUnit - Add assertions to test outputs of operation: loadPosts
+	}
+
+	/**
+	 * Operation Unit Test
+	* Delete an existing Topic entity
+	* 
+	* @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void deletePostTopic() {
+		// TODO: JUnit - Populate test inputs for operation: deletePostTopic 
+		Integer post_id = 0;
+		Integer related_topic_id = 0;
+		Post response = null;
+		response = service.deletePostTopic(post_id, related_topic_id);
+		// TODO: JUnit - Add assertions to test outputs of operation: deletePostTopic
+	}
+
+	/**
+	 * Operation Unit Test
 	* Delete an existing Post entity
 	* 
 	* @generated
@@ -101,7 +138,7 @@ public class PostServiceTest {
 
 	/**
 	 * Operation Unit Test
-	* Load an existing Post entity
+	* Save an existing Host entity
 	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -110,10 +147,33 @@ public class PostServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void loadPosts() {
-		Set<Post> response = null;
-		response = service.loadPosts();
-		// TODO: JUnit - Add assertions to test outputs of operation: loadPosts
+	public void savePostHost() {
+		// TODO: JUnit - Populate test inputs for operation: savePostHost 
+		Integer id = 0;
+		Host related_host = new com.mayaccom.domain.Host();
+		Post response = null;
+		response = service.savePostHost(id, related_host);
+		// TODO: JUnit - Add assertions to test outputs of operation: savePostHost
+	}
+
+	/**
+	 * Operation Unit Test
+	* Return all Post entity
+	* 
+	* @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void findAllPosts() {
+		// TODO: JUnit - Populate test inputs for operation: findAllPosts 
+		Integer startResult = 0;
+		Integer maxRows = 0;
+		List<Post> response = null;
+		response = service.findAllPosts(startResult, maxRows);
+		// TODO: JUnit - Add assertions to test outputs of operation: findAllPosts
 	}
 
 	/**
@@ -146,31 +206,11 @@ public class PostServiceTest {
 	@Test
 	public void deletePostHost() {
 		// TODO: JUnit - Populate test inputs for operation: deletePostHost 
-		Integer post_id = 0;
+		Integer post_id_1 = 0;
 		Integer related_host_id = 0;
 		Post response = null;
-		response = service.deletePostHost(post_id, related_host_id);
+		response = service.deletePostHost(post_id_1, related_host_id);
 		// TODO: JUnit - Add assertions to test outputs of operation: deletePostHost
-	}
-
-	/**
-	 * Operation Unit Test
-	* Save an existing Topic entity
-	* 
-	* @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void savePostTopic() {
-		// TODO: JUnit - Populate test inputs for operation: savePostTopic 
-		Integer id = 0;
-		Topic related_topic = new com.mayaccom.domain.Topic();
-		Post response = null;
-		response = service.savePostTopic(id, related_topic);
-		// TODO: JUnit - Add assertions to test outputs of operation: savePostTopic
 	}
 
 	/**
@@ -192,7 +232,7 @@ public class PostServiceTest {
 
 	/**
 	 * Operation Unit Test
-	* Save an existing Host entity
+	* Save an existing Topic entity
 	* 
 	* @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -201,33 +241,13 @@ public class PostServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void savePostHost() {
-		// TODO: JUnit - Populate test inputs for operation: savePostHost 
+	public void savePostTopic() {
+		// TODO: JUnit - Populate test inputs for operation: savePostTopic 
 		Integer id_2 = 0;
-		Host related_host = new com.mayaccom.domain.Host();
+		Topic related_topic = new com.mayaccom.domain.Topic();
 		Post response = null;
-		response = service.savePostHost(id_2, related_host);
-		// TODO: JUnit - Add assertions to test outputs of operation: savePostHost
-	}
-
-	/**
-	 * Operation Unit Test
-	* Return all Post entity
-	* 
-	* @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void findAllPosts() {
-		// TODO: JUnit - Populate test inputs for operation: findAllPosts 
-		Integer startResult = 0;
-		Integer maxRows = 0;
-		List<Post> response = null;
-		response = service.findAllPosts(startResult, maxRows);
-		// TODO: JUnit - Add assertions to test outputs of operation: findAllPosts
+		response = service.savePostTopic(id_2, related_topic);
+		// TODO: JUnit - Add assertions to test outputs of operation: savePostTopic
 	}
 
 	/**
@@ -245,26 +265,6 @@ public class PostServiceTest {
 		// TODO: JUnit - Populate test inputs for operation: savePost 
 		Post post_1 = new com.mayaccom.domain.Post();
 		service.savePost(post_1);
-	}
-
-	/**
-	 * Operation Unit Test
-	* Delete an existing Topic entity
-	* 
-	* @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void deletePostTopic() {
-		// TODO: JUnit - Populate test inputs for operation: deletePostTopic 
-		Integer post_id_1 = 0;
-		Integer related_topic_id = 0;
-		Post response = null;
-		response = service.deletePostTopic(post_id_1, related_topic_id);
-		// TODO: JUnit - Add assertions to test outputs of operation: deletePostTopic
 	}
 
 	/**

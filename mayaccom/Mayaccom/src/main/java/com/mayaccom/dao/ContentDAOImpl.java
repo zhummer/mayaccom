@@ -76,50 +76,50 @@ public class ContentDAOImpl extends AbstractJpaDao<Content> implements ContentDA
 	}
 
 	/**
-	 * JPQL Query - findContentByEditorContent
+	 * JPQL Query - findContentByContentNameContaining
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByEditorContent.query]JPASelect
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByContentNameContaining.query]JPASelect
 	 */
 	@Transactional
-	public Set<Content> findContentByEditorContent(String editorContent1) throws DataAccessException {
+	public Set<Content> findContentByContentNameContaining(String contentName) throws DataAccessException {
 
-		return findContentByEditorContent(editorContent1, -1, -1);
+		return findContentByContentNameContaining(contentName, -1, -1);
 	}
 
 	/**
-	 * JPQL Query - findContentByEditorContent
+	 * JPQL Query - findContentByContentNameContaining
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByEditorContent.query]JPASelectWithPagination
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByContentNameContaining.query]JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public Set<Content> findContentByEditorContent(String editorContent1, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findContentByEditorContent", startResult, maxRows, editorContent1);
+	public Set<Content> findContentByContentNameContaining(String contentName, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findContentByContentNameContaining", startResult, maxRows, contentName);
 		return new LinkedHashSet<Content>(query.getResultList());
 	}
 
 	/**
-	 * JPQL Query - findContentByContentName
+	 * JPQL Query - findAllContents
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByContentName.query]JPASelect
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findAllContents.query]JPASelect
 	 */
 	@Transactional
-	public Set<Content> findContentByContentName(String contentName) throws DataAccessException {
+	public Set<Content> findAllContents() throws DataAccessException {
 
-		return findContentByContentName(contentName, -1, -1);
+		return findAllContents(-1, -1);
 	}
 
 	/**
-	 * JPQL Query - findContentByContentName
+	 * JPQL Query - findAllContents
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByContentName.query]JPASelectWithPagination
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findAllContents.query]JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public Set<Content> findContentByContentName(String contentName, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findContentByContentName", startResult, maxRows, contentName);
+	public Set<Content> findAllContents(int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findAllContents", startResult, maxRows);
 		return new LinkedHashSet<Content>(query.getResultList());
 	}
 
@@ -151,26 +151,50 @@ public class ContentDAOImpl extends AbstractJpaDao<Content> implements ContentDA
 	}
 
 	/**
-	 * JPQL Query - findAllContents
+	 * JPQL Query - findContentByContentName
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findAllContents.query]JPASelect
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByContentName.query]JPASelect
 	 */
 	@Transactional
-	public Set<Content> findAllContents() throws DataAccessException {
+	public Set<Content> findContentByContentName(String contentName) throws DataAccessException {
 
-		return findAllContents(-1, -1);
+		return findContentByContentName(contentName, -1, -1);
 	}
 
 	/**
-	 * JPQL Query - findAllContents
+	 * JPQL Query - findContentByContentName
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findAllContents.query]JPASelectWithPagination
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByContentName.query]JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public Set<Content> findAllContents(int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findAllContents", startResult, maxRows);
+	public Set<Content> findContentByContentName(String contentName, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findContentByContentName", startResult, maxRows, contentName);
+		return new LinkedHashSet<Content>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findContentByEditorContent
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByEditorContent.query]JPASelect
+	 */
+	@Transactional
+	public Set<Content> findContentByEditorContent(String editorContent1) throws DataAccessException {
+
+		return findContentByEditorContent(editorContent1, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findContentByEditorContent
+	 *
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByEditorContent.query]JPASelectWithPagination
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Content> findContentByEditorContent(String editorContent1, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findContentByEditorContent", startResult, maxRows, editorContent1);
 		return new LinkedHashSet<Content>(query.getResultList());
 	}
 
@@ -199,30 +223,6 @@ public class ContentDAOImpl extends AbstractJpaDao<Content> implements ContentDA
 		} catch (NoResultException nre) {
 			return null;
 		}
-	}
-
-	/**
-	 * JPQL Query - findContentByContentNameContaining
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByContentNameContaining.query]JPASelect
-	 */
-	@Transactional
-	public Set<Content> findContentByContentNameContaining(String contentName) throws DataAccessException {
-
-		return findContentByContentNameContaining(contentName, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findContentByContentNameContaining
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/ContentDAO/findContentByContentNameContaining.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Content> findContentByContentNameContaining(String contentName, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findContentByContentNameContaining", startResult, maxRows, contentName);
-		return new LinkedHashSet<Content>(query.getResultList());
 	}
 
 	/**

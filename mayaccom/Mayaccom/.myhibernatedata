@@ -1,0 +1,17 @@
+#MyEclipse Hibernate Properties
+#Wed Feb 28 00:31:46 CET 2018
+genVersionTag=false
+sessionFactoryName=com.mayaccom.dao.HibernateSessionFactory
+genAnnotations=false
+configFile=/Mayaccom/src/main/java/hibernate.cfg.xml
+reStrategyClass=
+sessionFactoryId=
+profile=
+detectM2M=false
+genBasicCompId=false
+keyGenerator=
+createConfigFile=true
+basePersistenceClass=
+detectO2O=false
+useJavaTypes=true
+reSettingsFile=

@@ -63,17 +63,6 @@ public class PostServiceImpl implements PostService {
 	}
 
 	/**
-	 * Delete an existing Post entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/deletePost%7B5747860c-f1fd-47f5-b057-b0556d60a213%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public void deletePost(Post post) {
-		postDAO.remove(post);
-		postDAO.flush();
-	}
-
-	/**
 	 * Load an existing Post entity
 	 * 
 	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/loadPosts%7Bc747cd91-ab9e-4ead-a97d-666c9e31cf24%7D/.properties.swoperation]
@@ -84,75 +73,38 @@ public class PostServiceImpl implements PostService {
 	}
 
 	/**
-	 * Return a count of all Post entity
+	 * Delete an existing Topic entity
 	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/countPosts%7Bf5396992-68c0-4828-8d8c-677f0d680790%7D/.properties.swoperation]
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/deletePostTopic%7B6bb51d99-4212-4f47-b3d6-16366045e97c%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public Integer countPosts() {
-		return ((Long) postDAO.createQuerySingleResult("select count(o) from Post o").getSingleResult()).intValue();
-	}
-
-	/**
-	 * Delete an existing Host entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/deletePostHost%7Bf082a6fa-5ab6-46d9-b66b-57c76b2c5c93%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Post deletePostHost(Integer post_id, Integer related_host_id) {
+	public Post deletePostTopic(Integer post_id, Integer related_topic_id) {
 		Post post = postDAO.findPostByPrimaryKey(post_id, -1, -1);
-		Host related_host = hostDAO.findHostByPrimaryKey(related_host_id, -1, -1);
+		Topic related_topic = topicDAO.findTopicByPrimaryKey(related_topic_id, -1, -1);
 
-		post.setHost(null);
-		related_host.getPosts().remove(post);
-		post = postDAO.store(post);
-		postDAO.flush();
-
-		related_host = hostDAO.store(related_host);
-		hostDAO.flush();
-
-		hostDAO.remove(related_host);
-		hostDAO.flush();
-
-		return post;
-	}
-
-	/**
-	 * Save an existing Topic entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/savePostTopic%7B670885be-8f2f-4b86-b584-b22b002c6de1%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Post savePostTopic(Integer id, Topic related_topic) {
-		Post post = postDAO.findPostByPrimaryKey(id, -1, -1);
-		Topic existingtopic = topicDAO.findTopicByPrimaryKey(related_topic.getId());
-
-		// copy into the existing record to preserve existing relationships
-		if (existingtopic != null) {
-			existingtopic.setId(related_topic.getId());
-			existingtopic.setName(related_topic.getName());
-			existingtopic.setLastPosterId(related_topic.getLastPosterId());
-			existingtopic.setLastPostAt(related_topic.getLastPostAt());
-			related_topic = existingtopic;
-		}
-
-		post.setTopic(related_topic);
-		related_topic.getPosts().add(post);
+		post.setTopic(null);
+		related_topic.getPosts().remove(post);
 		post = postDAO.store(post);
 		postDAO.flush();
 
 		related_topic = topicDAO.store(related_topic);
 		topicDAO.flush();
 
+		topicDAO.remove(related_topic);
+		topicDAO.flush();
+
 		return post;
 	}
 
 	/**
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/findPostByPrimaryKey%7Bc1d93362-8eac-4504-a60d-bc49337d5942%7D/.properties.swoperation]
+	 * Delete an existing Post entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/deletePost%7B5747860c-f1fd-47f5-b057-b0556d60a213%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public Post findPostByPrimaryKey(Integer id) {
-		return postDAO.findPostByPrimaryKey(id);
+	public void deletePost(Post post) {
+		postDAO.remove(post);
+		postDAO.flush();
 	}
 
 	/**
@@ -200,6 +152,78 @@ public class PostServiceImpl implements PostService {
 	}
 
 	/**
+	 * Return a count of all Post entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/countPosts%7Bf5396992-68c0-4828-8d8c-677f0d680790%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Integer countPosts() {
+		return ((Long) postDAO.createQuerySingleResult("select count(o) from Post o").getSingleResult()).intValue();
+	}
+
+	/**
+	 * Delete an existing Host entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/deletePostHost%7Bf082a6fa-5ab6-46d9-b66b-57c76b2c5c93%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Post deletePostHost(Integer post_id, Integer related_host_id) {
+		Post post = postDAO.findPostByPrimaryKey(post_id, -1, -1);
+		Host related_host = hostDAO.findHostByPrimaryKey(related_host_id, -1, -1);
+
+		post.setHost(null);
+		related_host.getPosts().remove(post);
+		post = postDAO.store(post);
+		postDAO.flush();
+
+		related_host = hostDAO.store(related_host);
+		hostDAO.flush();
+
+		hostDAO.remove(related_host);
+		hostDAO.flush();
+
+		return post;
+	}
+
+	/**
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/findPostByPrimaryKey%7Bc1d93362-8eac-4504-a60d-bc49337d5942%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Post findPostByPrimaryKey(Integer id) {
+		return postDAO.findPostByPrimaryKey(id);
+	}
+
+	/**
+	 * Save an existing Topic entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/savePostTopic%7B670885be-8f2f-4b86-b584-b22b002c6de1%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Post savePostTopic(Integer id, Topic related_topic) {
+		Post post = postDAO.findPostByPrimaryKey(id, -1, -1);
+		Topic existingtopic = topicDAO.findTopicByPrimaryKey(related_topic.getId());
+
+		// copy into the existing record to preserve existing relationships
+		if (existingtopic != null) {
+			existingtopic.setId(related_topic.getId());
+			existingtopic.setName(related_topic.getName());
+			existingtopic.setLastPosterId(related_topic.getLastPosterId());
+			existingtopic.setLastPostAt(related_topic.getLastPostAt());
+			related_topic = existingtopic;
+		}
+
+		post.setTopic(related_topic);
+		related_topic.getPosts().add(post);
+		post = postDAO.store(post);
+		postDAO.flush();
+
+		related_topic = topicDAO.store(related_topic);
+		topicDAO.flush();
+
+		return post;
+	}
+
+	/**
 	 * Save an existing Post entity
 	 * 
 	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/savePost%7B77d147de-a811-4e15-a888-b9cc138ab4a1%7D/.properties.swoperation]
@@ -218,29 +242,5 @@ public class PostServiceImpl implements PostService {
 			post = postDAO.store(post);
 		}
 		postDAO.flush();
-	}
-
-	/**
-	 * Delete an existing Topic entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/PostService/deletePostTopic%7B6bb51d99-4212-4f47-b3d6-16366045e97c%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Post deletePostTopic(Integer post_id, Integer related_topic_id) {
-		Post post = postDAO.findPostByPrimaryKey(post_id, -1, -1);
-		Topic related_topic = topicDAO.findTopicByPrimaryKey(related_topic_id, -1, -1);
-
-		post.setTopic(null);
-		related_topic.getPosts().remove(post);
-		post = postDAO.store(post);
-		postDAO.flush();
-
-		related_topic = topicDAO.store(related_topic);
-		topicDAO.flush();
-
-		topicDAO.remove(related_topic);
-		topicDAO.flush();
-
-		return post;
 	}
 }

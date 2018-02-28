@@ -5,14 +5,14 @@
 		<persistence-unit name="MayaDB" transaction-type="JTA">
 			<description>generated-persistence-unit</description>
 					<provider>org.hibernate.ejb.HibernatePersistence</provider>
-      			<class>com.mayaccom.domain.Accomodation</class>
-      			<class>com.mayaccom.domain.Content</class>
-      			<class>com.mayaccom.domain.Forum</class>
       			<class>com.mayaccom.domain.Host</class>
-      			<class>com.mayaccom.domain.Post</class>
-      			<class>com.mayaccom.domain.Topic</class>
+      			<class>com.mayaccom.domain.Accomodation</class>
+      			<class>com.mayaccom.domain.Forum</class>
       			<class>com.mayaccom.security.Authorities</class>
       			<class>com.mayaccom.security.Users</class>
+      			<class>com.mayaccom.domain.Post</class>
+      			<class>com.mayaccom.domain.Content</class>
+      			<class>com.mayaccom.domain.Topic</class>
    			<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		</persistence-unit>
 

@@ -27,6 +27,7 @@
 
 
 
+
 	<filter>
 		<description>
 			generated-spring-security-session-integration-filter
@@ -66,6 +67,8 @@
 
 
 
+
+
 	<filter>
 		<description>generated-spring-security-filter</description>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -87,6 +90,7 @@
 		<filter-name>Sitemesh Filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 
 
 

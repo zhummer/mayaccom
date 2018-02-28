@@ -73,6 +73,26 @@ public class HostServiceImpl implements HostService {
 	}
 
 	/**
+	 * Delete an existing Topic entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/deleteHostTopics%7Bbf6ca92e-42e4-4d1a-89df-3bd84786ffb3%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Host deleteHostTopics(Integer host_id, Integer related_topics_id) {
+		Topic related_topics = topicDAO.findTopicByPrimaryKey(related_topics_id, -1, -1);
+
+		Host host = hostDAO.findHostByPrimaryKey(host_id, -1, -1);
+
+		related_topics.setHost(null);
+		host.getTopics().remove(related_topics);
+
+		topicDAO.remove(related_topics);
+		topicDAO.flush();
+
+		return host;
+	}
+
+	/**
 	 * Save an existing Accomodation entity
 	 * 
 	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/saveHostAccomodations%7Bb1967949-5fcc-4d96-8e1c-227f45146dfd%7D/.properties.swoperation]
@@ -112,11 +132,43 @@ public class HostServiceImpl implements HostService {
 	}
 
 	/**
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/findHostByPrimaryKey%7B612fd1c7-0c27-4e1b-8973-be8af0b06a44%7D/.properties.swoperation]
+	 * Load an existing Host entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/loadHosts%7Bc0b2948b-f8e4-420f-972b-7d8290d20fa7%7D/.properties.swoperation]
 	 */
 	@Transactional
-	public Host findHostByPrimaryKey(Integer id) {
-		return hostDAO.findHostByPrimaryKey(id);
+	public Set<Host> loadHosts() {
+		return hostDAO.findAllHosts();
+	}
+
+	/**
+	 * Delete an existing Post entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/deleteHostPosts%7B11ca16b3-388d-40be-ad33-621636949dc6%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Host deleteHostPosts(Integer host_id, Integer related_posts_id) {
+		Post related_posts = postDAO.findPostByPrimaryKey(related_posts_id, -1, -1);
+
+		Host host = hostDAO.findHostByPrimaryKey(host_id, -1, -1);
+
+		related_posts.setHost(null);
+		host.getPosts().remove(related_posts);
+
+		postDAO.remove(related_posts);
+		postDAO.flush();
+
+		return host;
+	}
+
+	/**
+	 * Return a count of all Host entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/countHosts%7Bca59dc83-3aa9-4e4f-b160-4659fa04fe3d%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Integer countHosts() {
+		return ((Long) hostDAO.createQuerySingleResult("select count(o) from Host o").getSingleResult()).intValue();
 	}
 
 	/**
@@ -148,74 +200,6 @@ public class HostServiceImpl implements HostService {
 	}
 
 	/**
-	 * Return all Host entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/findAllHosts%7B7dd8c1b6-7b11-4d0c-9b82-ef0508c58437%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public List<Host> findAllHosts(Integer startResult, Integer maxRows) {
-		return new java.util.ArrayList<Host>(hostDAO.findAllHosts(startResult, maxRows));
-	}
-
-	/**
-	 * Save an existing Host entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/saveHost%7B1dce66d7-4d0b-4888-9b1b-f4535412619b%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public void saveHost(Host host) {
-		Host existingHost = hostDAO.findHostByPrimaryKey(host.getId());
-
-		if (existingHost != null) {
-			if (existingHost != host) {
-				existingHost.setId(host.getId());
-				existingHost.setContactPerson(host.getContactPerson());
-				existingHost.setPhone1(host.getPhone1());
-				existingHost.setPhone2(host.getPhone2());
-				existingHost.setPhone3(host.getPhone3());
-				existingHost.setEmail(host.getEmail());
-				existingHost.setUsername(host.getUsername());
-				existingHost.setPassword(host.getPassword());
-			}
-			host = hostDAO.store(existingHost);
-		} else {
-			host = hostDAO.store(host);
-		}
-		hostDAO.flush();
-	}
-
-	/**
-	 * Delete an existing Host entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/deleteHost%7B95bf8ae7-ff45-4e97-866a-3bfb60b17191%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public void deleteHost(Host host) {
-		hostDAO.remove(host);
-		hostDAO.flush();
-	}
-
-	/**
-	 * Delete an existing Post entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/deleteHostPosts%7B11ca16b3-388d-40be-ad33-621636949dc6%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Host deleteHostPosts(Integer host_id, Integer related_posts_id) {
-		Post related_posts = postDAO.findPostByPrimaryKey(related_posts_id, -1, -1);
-
-		Host host = hostDAO.findHostByPrimaryKey(host_id, -1, -1);
-
-		related_posts.setHost(null);
-		host.getPosts().remove(related_posts);
-
-		postDAO.remove(related_posts);
-		postDAO.flush();
-
-		return host;
-	}
-
-	/**
 	 * Delete an existing Accomodation entity
 	 * 
 	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/deleteHostAccomodations%7B4e98dd72-5a4f-4f82-9cb7-ead3984ea9af%7D/.properties.swoperation]
@@ -231,46 +215,6 @@ public class HostServiceImpl implements HostService {
 
 		accomodationDAO.remove(related_accomodations);
 		accomodationDAO.flush();
-
-		return host;
-	}
-
-	/**
-	 * Load an existing Host entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/loadHosts%7Bc0b2948b-f8e4-420f-972b-7d8290d20fa7%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Set<Host> loadHosts() {
-		return hostDAO.findAllHosts();
-	}
-
-	/**
-	 * Return a count of all Host entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/countHosts%7Bca59dc83-3aa9-4e4f-b160-4659fa04fe3d%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Integer countHosts() {
-		return ((Long) hostDAO.createQuerySingleResult("select count(o) from Host o").getSingleResult()).intValue();
-	}
-
-	/**
-	 * Delete an existing Topic entity
-	 * 
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/deleteHostTopics%7Bbf6ca92e-42e4-4d1a-89df-3bd84786ffb3%7D/.properties.swoperation]
-	 */
-	@Transactional
-	public Host deleteHostTopics(Integer host_id, Integer related_topics_id) {
-		Topic related_topics = topicDAO.findTopicByPrimaryKey(related_topics_id, -1, -1);
-
-		Host host = hostDAO.findHostByPrimaryKey(host_id, -1, -1);
-
-		related_topics.setHost(null);
-		host.getTopics().remove(related_topics);
-
-		topicDAO.remove(related_topics);
-		topicDAO.flush();
 
 		return host;
 	}
@@ -303,5 +247,61 @@ public class HostServiceImpl implements HostService {
 		hostDAO.flush();
 
 		return host;
+	}
+
+	/**
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/findHostByPrimaryKey%7B612fd1c7-0c27-4e1b-8973-be8af0b06a44%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public Host findHostByPrimaryKey(Integer id) {
+		return hostDAO.findHostByPrimaryKey(id);
+	}
+
+	/**
+	 * Save an existing Host entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/saveHost%7B1dce66d7-4d0b-4888-9b1b-f4535412619b%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public void saveHost(Host host) {
+		Host existingHost = hostDAO.findHostByPrimaryKey(host.getId());
+
+		if (existingHost != null) {
+			if (existingHost != host) {
+				existingHost.setId(host.getId());
+				existingHost.setContactPerson(host.getContactPerson());
+				existingHost.setPhone1(host.getPhone1());
+				existingHost.setPhone2(host.getPhone2());
+				existingHost.setPhone3(host.getPhone3());
+				existingHost.setEmail(host.getEmail());
+				existingHost.setUsername(host.getUsername());
+				existingHost.setPassword(host.getPassword());
+			}
+			host = hostDAO.store(existingHost);
+		} else {
+			host = hostDAO.store(host);
+		}
+		hostDAO.flush();
+	}
+
+	/**
+	 * Return all Host entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/findAllHosts%7B7dd8c1b6-7b11-4d0c-9b82-ef0508c58437%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public List<Host> findAllHosts(Integer startResult, Integer maxRows) {
+		return new java.util.ArrayList<Host>(hostDAO.findAllHosts(startResult, maxRows));
+	}
+
+	/**
+	 * Delete an existing Host entity
+	 * 
+	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/service/HostService/deleteHost%7B95bf8ae7-ff45-4e97-866a-3bfb60b17191%7D/.properties.swoperation]
+	 */
+	@Transactional
+	public void deleteHost(Host host) {
+		hostDAO.remove(host);
+		hostDAO.flush();
 	}
 }
