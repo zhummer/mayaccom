@@ -6,13 +6,19 @@
 			<description>generated-persistence-unit</description>
 					<provider>org.hibernate.ejb.HibernatePersistence</provider>
       			<class>com.mayaccom.domain.Host</class>
+      			<class>com.mayaccom.domain.Blogcomment</class>
       			<class>com.mayaccom.domain.Accomodation</class>
       			<class>com.mayaccom.domain.Forum</class>
       			<class>com.mayaccom.security.Authorities</class>
       			<class>com.mayaccom.security.Users</class>
+      			<class>com.mayaccom.domain.Person</class>
       			<class>com.mayaccom.domain.Post</class>
+      			<class>com.mayaccom.domain.Users</class>
+      			<class>com.mayaccom.domain.Authorities</class>
+      			<class>com.mayaccom.domain.Blogpost</class>
       			<class>com.mayaccom.domain.Content</class>
       			<class>com.mayaccom.domain.Topic</class>
+      			<class>com.mayaccom.domain.Blog</class>
    			<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		</persistence-unit>
 

@@ -28,6 +28,14 @@
 
 
 
+
+
+
+
+
+
+
+
 	<filter>
 		<description>
 			generated-spring-security-session-integration-filter
@@ -69,6 +77,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<filter>
 		<description>generated-spring-security-filter</description>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -90,6 +114,14 @@
 		<filter-name>Sitemesh Filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+
+
+
+
+
+
+
 
 
 
@@ -791,6 +823,374 @@
 	<servlet-mapping>
 		<servlet-name>Mayaccom Servlet</servlet-name>
 		<url-pattern>/saveHost</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Blog/{blog_id}/person/{person_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Blog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Blog/{blog_id}/blogposts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Blog/{blog_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Blog/{blog_id}/person</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Blog/{blog_id}/blogposts/{blogpost_id}
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deletePerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newPersonBlogs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeletePersonBlogs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editPersonBlogs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deletePersonBlogs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editPersonBlogcomments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newPersonBlogcomments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deletePersonBlogcomments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/savePerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listPersonBlogs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listPersonBlogcomments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/savePersonBlogcomments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/savePersonBlogs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectPersonBlogs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeletePersonBlogcomments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeletePerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectPersonBlogcomments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Person/{person_id}/blogs/{blog_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Person/{person_id}/blogs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Person/{person_id}/blogcomments/{blogcomment_id}
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Person</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Person/{person_id}/blogcomments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Person/{person_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteUsers</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editUsersAuthoritieses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newUsers</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexUsers</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newUsersAuthoritieses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveUsers</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteUsersAuthoritieses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listUsersAuthoritieses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteUsersAuthoritieses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectUsersAuthoritieses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectUsers</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editUsers</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteUsers</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveUsersAuthoritieses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Users/{users_id}/authoritieses/{authorities_id}
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Users/{users_id}/authoritieses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Users</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Users/{users_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>
+			/Authorities/{authorities_id}/userses/{users_id}
+		</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Authorities</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Authorities/{authorities_id}</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/Authorities/{authorities_id}/userses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editBlogPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectBlogBlogposts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteBlogPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveBlogPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listBlogPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteBlogPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteBlogBlogposts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveBlogBlogposts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newBlogPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectBlog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveBlog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newBlogBlogposts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteBlog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteBlogBlogposts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexBlog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editBlogBlogposts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newBlog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectBlogPerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listBlogBlogposts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editBlog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteBlog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveAuthorities</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/indexAuthorities</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newAuthorities</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteAuthorities</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/listAuthoritiesUserses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectAuthorities</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/deleteAuthoritiesUserses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteAuthorities</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/newAuthoritiesUserses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/selectAuthoritiesUserses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/confirmDeleteAuthoritiesUserses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editAuthoritiesUserses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/editAuthorities</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Mayaccom Servlet</servlet-name>
+		<url-pattern>/saveAuthoritiesUserses</url-pattern>
 	</servlet-mapping>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="ASCII"?>
+<data:NamedQuery xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:data="model.data" xmlns:type="model.type"><outputs collection="true" name="userss"><dataType xsi:type="type:ComplexDataType"><type href="../../domain/Users.datatype#/"/></dataType></outputs><queryText text="select myUsers from Users myUsers" id="_tyu10B2jEeiTmdm5d9H_eQ"/></data:NamedQuery>

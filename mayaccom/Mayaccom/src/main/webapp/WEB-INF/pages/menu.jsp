@@ -14,6 +14,9 @@
 <jsp:include page="/WEB-INF/pages/topic/menu.jsp" />
 <jsp:include page="/WEB-INF/pages/person/menu.jsp" />
 <jsp:include page="/WEB-INF/pages/forum/menu.jsp" />
+<jsp:include page="/WEB-INF/pages/authorities/menu.jsp" />
+<jsp:include page="/WEB-INF/pages/users/menu.jsp" />
+<jsp:include page="/WEB-INF/pages/blog/menu.jsp" />
 <div class="clear">&nbsp;</div>
 		</div>
 	</div></div></div></div>

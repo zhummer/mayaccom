@@ -14,7 +14,7 @@
 	<http auto-config="true" >
 		<intercept-url pattern='/pages/login.jsp' />
 		<intercept-url pattern="/secure/*" access="IS_AUTHENTICATED_REMEMBERED" />
-		<form-login login-page="/pages/login.jsp" authentication-failure-url="/pages/login.jsp?login_error=true"  /> 
+		<form-login login-page="/pages/login.jsp" authentication-failure-url="/pages/login.jsp?login_error=true" always-use-default-target="true" default-target-url="/index.jsp" /> 
 		<logout logout-success-url="/pages/logout-redirect.jsp" invalidate-session="true" />
 		<remember-me key="MayaccomRMKey" user-service-ref="userDetailsService" />
 	</http>
@@ -36,19 +36,25 @@
 	<!-- Apply security for all beans where security was set -->
 	<!-- ******************************************************************** -->
 	<global-method-security >
-		<protect-pointcut expression="execution(* com.mayaccom.service.ContentService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.service.PersonService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
 		<protect-pointcut expression="execution(* com.mayaccom.service.AccomodationService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.ForumService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.HostService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.service.UsersService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
 		<protect-pointcut expression="execution(* com.mayaccom.service.TopicService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.service.ForumService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.service.BlogService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.service.AuthoritiesService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
 		<protect-pointcut expression="execution(* com.mayaccom.service.PostService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.HostDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.AccomodationDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.ForumDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.ContentDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.service.ContentService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.service.HostService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.dao.BlogcommentDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
 		<protect-pointcut expression="execution(* com.mayaccom.dao.PostDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.security.UsersDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.security.AuthoritiesDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.dao.AccomodationDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.dao.HostDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.dao.ContentDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.dao.ForumDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.dao.BlogpostDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
 		<protect-pointcut expression="execution(* com.mayaccom.dao.TopicDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.dao.BlogDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
+		<protect-pointcut expression="execution(* com.mayaccom.dao.PersonDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
 	</global-method-security>
 </beans:beans>
