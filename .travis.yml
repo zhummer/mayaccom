@@ -22,8 +22,8 @@ before_install:
   - java -version
   - sudo /etc/init.d/mysql stop
   - sudo /etc/init.d/postgresql stop
-install:
-script:
+# install:
+# script:
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
