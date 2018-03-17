@@ -9,15 +9,66 @@
 	<packaging>war</packaging>
 	<name>Mayaccom</name>
 	<description></description>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.2.7.RELEASE</version>
+	</parent>
 	<properties>
 		<webVersion>3.1</webVersion>
 		<guice.version>3.0-rc3</guice.version>
 		<hibernate-version>5.1.0.Final</hibernate-version>
 		<jackson-version>1.6.3</jackson-version>
-		<hibernate-validator-version>5.2.4.Final</hibernate-validator-version>
+		<hibernate-validator-version>6.0.8.Final</hibernate-validator-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<version>2.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat</groupId>
+					<artifactId>tomcat-jdbc</artifactId>
+				</exclusion>
+			</exclusions>
+			<version>2.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>2.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>atomikos-util</artifactId>
+			<version>4.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions</artifactId>
+			<version>4.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-api</artifactId>
+			<version>4.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-jta</artifactId>
+			<version>4.0.6</version>
+		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -25,9 +76,43 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>juli</artifactId>
+			<version>6.0.26</version>
+		</dependency>
+		<dependency>                                 <!-- juli fot tomcat 7-->
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jul</artifactId>
+			<version>2.6.2</version>
+			<!-- scope>runtime</scope -->
+		</dependency>
+		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.servlet.jsp.jstl</artifactId>
 			<version>1.2.2</version>
+		</dependency>
+		<!-- dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jms_1.1_spec</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>antlr</groupId>
@@ -43,6 +128,11 @@
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>jms</groupId>
+			<artifactId>jms</artifactId>
+			<version>1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -82,7 +172,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>6.0.7.Final</version>
+			<version>6.0.8.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>xml-apis</groupId>
@@ -352,6 +442,10 @@
 					<groupId>org.springframework</groupId>
 				</exclusion>
 				<exclusion>
+					<artifactId>jms</artifactId>
+					<groupId>javax.jms</groupId>
+				</exclusion>
+				<exclusion>
 					<artifactId>spring-dao</artifactId>
 					<groupId>org.springframework</groupId>
 				</exclusion>
@@ -518,12 +612,13 @@
 		<dependency>
 			<groupId>org.directwebremoting</groupId>
 			<artifactId>dwr</artifactId>
-			<version>2.0.5</version>
+			<version>3.0.2-RELEASE</version>
+			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.9-rc</version>
+			<version>5.1.32</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
@@ -549,7 +644,7 @@
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
+			<version>2.0.1.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -572,11 +667,24 @@
 			<version>2.2.4</version>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>skyway-public-site</id>
+                        <name>Skyway Public Maven Repository</name>
+                        <url>http://downloads.skywayperspectives.org/maven-repo</url>
+		</repository>
+	</distributionManagement>
 	<repositories>
 		<repository>
 			<id>skyway-public-site</id>
 			<name>Skyway Public Maven Repository</name>
 			<url>http://downloads.skywayperspectives.org/maven-repo</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
 		</repository>
 	</repositories>
 	<build>
