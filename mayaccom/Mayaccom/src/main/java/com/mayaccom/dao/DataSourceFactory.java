@@ -1,5 +1,6 @@
+package com.mayaccom.dao;
+
 import javax.sql.DataSource;
-import javax.sql.XADataSource;
 
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
