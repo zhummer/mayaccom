@@ -35,6 +35,15 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
+							<fmt:message key="blog.description.title"/>:
+						</td>
+						<td>
+							<form:textarea id="blog_description" path="description" cssStyle="width:300px; height:100px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "blog_description",widgetType : "dijit.form.SimpleTextarea",widgetAttrs : {}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
 							<fmt:message key="blog.title.title"/>:
 						</td>
 						<td>
@@ -44,11 +53,11 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="blog.description.title"/>:
+							<fmt:message key="blog.owner.title"/>:
 						</td>
 						<td>
-							<form:textarea id="blog_description" path="description" cssStyle="width:300px; height:100px;"/>
-							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "blog_description",widgetType : "dijit.form.SimpleTextarea",widgetAttrs : {}})); </script>
+							<form:input id="blog_owner" path="owner" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "blog_owner",widgetType : "dijit.form.NumberTextBox",widgetAttrs : {promptMessage: "<fmt:message key="blog.owner.help"/>", constraints : {places:0}}})); </script>
 						</td>
 					</tr>
 				</tbody>

@@ -35,15 +35,6 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="accomodation.name.title"/>:
-						</td>
-						<td>
-							<form:input id="accomodation_name" path="name" cssStyle="width:300px;"/>
-							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_name",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.name.help"/>"}})); </script>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" valign="top">
 							<fmt:message key="accomodation.address.title"/>:
 						</td>
 						<td>
@@ -53,20 +44,11 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="accomodation.city.title"/>:
+							<fmt:message key="accomodation.aream2.title"/>:
 						</td>
 						<td>
-							<form:input id="accomodation_city" path="city" cssStyle="width:300px;"/>
-							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_city",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.city.help"/>"}})); </script>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" valign="top">
-							<fmt:message key="accomodation.zipcode.title"/>:
-						</td>
-						<td>
-							<form:input id="accomodation_zipCode" path="zipCode" cssStyle="width:300px;"/>
-							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_zipCode",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.zipcode.help"/>"}})); </script>
+							<form:input id="accomodation_areaM2" path="areaM2" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_areaM2",widgetType : "dijit.form.NumberTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.aream2.help"/>", constraints : {places:0}}})); </script>
 						</td>
 					</tr>
 					<tr>
@@ -76,6 +58,15 @@
 						<td>
 							<form:input id="accomodation_capacity" path="capacity" cssStyle="width:300px;"/>
 							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_capacity",widgetType : "dijit.form.NumberTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.capacity.help"/>", constraints : {places:0}}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.city.title"/>:
+						</td>
+						<td>
+							<form:input id="accomodation_city" path="city" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_city",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.city.help"/>"}})); </script>
 						</td>
 					</tr>
 					<tr>
@@ -107,11 +98,74 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="accomodation.aream2.title"/>:
+							<fmt:message key="accomodation.name.title"/>:
 						</td>
 						<td>
-							<form:input id="accomodation_areaM2" path="areaM2" cssStyle="width:300px;"/>
-							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_areaM2",widgetType : "dijit.form.NumberTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.aream2.help"/>", constraints : {places:0}}})); </script>
+							<form:input id="accomodation_name" path="name" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_name",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.name.help"/>"}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.zipcode.title"/>:
+						</td>
+						<td>
+							<form:input id="accomodation_zipCode" path="zipCode" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_zipCode",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.zipcode.help"/>"}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.personid.title"/>:
+						</td>
+						<td>
+							<form:input id="accomodation_personId" path="personId" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_personId",widgetType : "dijit.form.NumberTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.personid.help"/>", constraints : {places:0}}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.type.title"/>:
+						</td>
+						<td>
+							<form:input id="accomodation_type" path="type" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_type",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.type.help"/>"}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.description.title"/>:
+						</td>
+						<td>
+							<form:input id="accomodation_description" path="description" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_description",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.description.help"/>"}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.active.title"/>:
+						</td>
+						<td>
+							<form:checkbox id="accomodation_active" path="active" />
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_active",widgetType : "dijit.form.CheckBox",widgetAttrs : {}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.rate.title"/>:
+						</td>
+						<td>
+							<form:input id="accomodation_rate" path="rate" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_rate",widgetType : "dijit.form.NumberTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.rate.help"/>", constraints : {places:0}}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.comment.title"/>:
+						</td>
+						<td>
+							<form:input id="accomodation_comment" path="comment" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "accomodation_comment",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="accomodation.comment.help"/>"}})); </script>
 						</td>
 					</tr>
 				</tbody>

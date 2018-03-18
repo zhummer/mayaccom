@@ -26,19 +26,19 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="forum.name.title"/>:
+							<fmt:message key="forum.description.title"/>:
 						</td>
 						<td>
-							${forum.name}
+							${forum.description}
 						&nbsp;
 						</td>
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="forum.description.title"/>:
+							<fmt:message key="forum.name.title"/>:
 						</td>
 						<td>
-							${forum.description}
+							${forum.name}
 						&nbsp;
 						</td>
 					</tr>

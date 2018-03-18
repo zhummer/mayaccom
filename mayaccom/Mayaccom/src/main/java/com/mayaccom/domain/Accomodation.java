@@ -5,32 +5,30 @@ import java.io.Serializable;
 
 import java.lang.StringBuilder;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.xml.bind.annotation.*;
 
 import javax.persistence.*;
 
 /**
- * @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype]
- * @generated
  */
 
 @Entity
 @NamedQueries({
+		@NamedQuery(name = "findAccomodationByActive", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.active = ?1"),
 		@NamedQuery(name = "findAccomodationByAddress", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.address = ?1"),
 		@NamedQuery(name = "findAccomodationByAddressContaining", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.address like ?1"),
 		@NamedQuery(name = "findAccomodationByAreaM2", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.areaM2 = ?1"),
 		@NamedQuery(name = "findAccomodationByCapacity", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.capacity = ?1"),
 		@NamedQuery(name = "findAccomodationByCity", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.city = ?1"),
 		@NamedQuery(name = "findAccomodationByCityContaining", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.city like ?1"),
+		@NamedQuery(name = "findAccomodationByComment", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.comment = ?1"),
+		@NamedQuery(name = "findAccomodationByCommentContaining", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.comment like ?1"),
+		@NamedQuery(name = "findAccomodationByDescription", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.description = ?1"),
+		@NamedQuery(name = "findAccomodationByDescriptionContaining", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.description like ?1"),
 		@NamedQuery(name = "findAccomodationById", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.id = ?1"),
 		@NamedQuery(name = "findAccomodationByLink1", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.link1 = ?1"),
 		@NamedQuery(name = "findAccomodationByLink1Containing", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.link1 like ?1"),
@@ -40,7 +38,11 @@ import javax.persistence.*;
 		@NamedQuery(name = "findAccomodationByLink3Containing", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.link3 like ?1"),
 		@NamedQuery(name = "findAccomodationByName", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.name = ?1"),
 		@NamedQuery(name = "findAccomodationByNameContaining", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.name like ?1"),
+		@NamedQuery(name = "findAccomodationByPersonId", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.personId = ?1"),
 		@NamedQuery(name = "findAccomodationByPrimaryKey", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.id = ?1"),
+		@NamedQuery(name = "findAccomodationByRate", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.rate = ?1"),
+		@NamedQuery(name = "findAccomodationByType", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.type = ?1"),
+		@NamedQuery(name = "findAccomodationByTypeContaining", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.type like ?1"),
 		@NamedQuery(name = "findAccomodationByZipCode", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.zipCode = ?1"),
 		@NamedQuery(name = "findAccomodationByZipCodeContaining", query = "select myAccomodation from Accomodation myAccomodation where myAccomodation.zipCode like ?1"),
 		@NamedQuery(name = "findAllAccomodations", query = "select myAccomodation from Accomodation myAccomodation") })
@@ -48,12 +50,11 @@ import javax.persistence.*;
 @Table(catalog = "mayaccom", name = "accomodation")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(namespace = "Mayaccom/com/mayaccom/domain", name = "Accomodation")
-@XmlRootElement(namespace = "Mayaccom/com/mayaccom/domain")
+
 public class Accomodation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='id'%5D]
 	 */
 
 	@Column(name = "id", nullable = false)
@@ -63,16 +64,6 @@ public class Accomodation implements Serializable {
 	@XmlElement
 	Integer id;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='name'%5D]
-	 */
-
-	@Column(name = "name", length = 200)
-	@Basic(fetch = FetchType.EAGER)
-
-	@XmlElement
-	String name;
-	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='address'%5D]
 	 */
 
 	@Column(name = "address", length = 200)
@@ -81,25 +72,14 @@ public class Accomodation implements Serializable {
 	@XmlElement
 	String address;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='city'%5D]
 	 */
 
-	@Column(name = "city", length = 50)
+	@Column(name = "area_m2")
 	@Basic(fetch = FetchType.EAGER)
 
 	@XmlElement
-	String city;
+	Integer areaM2;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='zipCode'%5D]
-	 */
-
-	@Column(name = "zip_code", length = 10)
-	@Basic(fetch = FetchType.EAGER)
-
-	@XmlElement
-	String zipCode;
-	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='capacity'%5D]
 	 */
 
 	@Column(name = "capacity")
@@ -108,7 +88,14 @@ public class Accomodation implements Serializable {
 	@XmlElement
 	Integer capacity;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='link1'%5D]
+	 */
+
+	@Column(name = "city", length = 50)
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	String city;
+	/**
 	 */
 
 	@Column(name = "link1", length = 50)
@@ -117,7 +104,6 @@ public class Accomodation implements Serializable {
 	@XmlElement
 	String link1;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='link2'%5D]
 	 */
 
 	@Column(name = "link2", length = 50)
@@ -126,7 +112,6 @@ public class Accomodation implements Serializable {
 	@XmlElement
 	String link2;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='link3'%5D]
 	 */
 
 	@Column(name = "link3", length = 50)
@@ -135,205 +120,284 @@ public class Accomodation implements Serializable {
 	@XmlElement
 	String link3;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@fields%5Bname='areaM2'%5D]
 	 */
 
-	@Column(name = "area_m2")
+	@Column(name = "name", length = 200)
 	@Basic(fetch = FetchType.EAGER)
 
 	@XmlElement
-	Integer areaM2;
-
+	String name;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@relationships%5Bname='host'%5D]
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({ @JoinColumn(name = "host_id", referencedColumnName = "id") })
-	@XmlTransient
-	Host host;
+
+	@Column(name = "zip_code", length = 10)
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	String zipCode;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Accomodation.datatype#//@relationships%5Bname='contents'%5D]
 	 */
-	@OneToMany(mappedBy = "accomodation", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 
-	@XmlElement(name = "", namespace = "")
-	java.util.Set<com.mayaccom.domain.Content> contents;
+	@Column(name = "person_id")
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	Integer personId;
+	/**
+	 */
+
+	@Column(name = "type", length = 20)
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	String type;
+	/**
+	 */
+
+	@Column(name = "description")
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	String description;
+	/**
+	 */
+
+	@Column(name = "active")
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	Boolean active;
+	/**
+	 */
+
+	@Column(name = "image", columnDefinition = "BLOB")
+	@Basic(fetch = FetchType.EAGER)
+	@Lob
+
+	@XmlElement
+	byte[] image;
+	/**
+	 */
+
+	@Column(name = "rate")
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	Integer rate;
+	/**
+	 */
+
+	@Column(name = "comment", length = 50)
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	String comment;
 
 	/**
-	* @generated
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	* @generated
 	 */
 	public Integer getId() {
 		return this.id;
 	}
 
 	/**
-	* @generated
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	* @generated
-	 */
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	* @generated
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	/**
-	* @generated
 	 */
 	public String getAddress() {
 		return this.address;
 	}
 
 	/**
-	* @generated
-	 */
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	/**
-	* @generated
-	 */
-	public String getCity() {
-		return this.city;
-	}
-
-	/**
-	* @generated
-	 */
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	/**
-	* @generated
-	 */
-	public String getZipCode() {
-		return this.zipCode;
-	}
-
-	/**
-	* @generated
-	 */
-	public void setCapacity(Integer capacity) {
-		this.capacity = capacity;
-	}
-
-	/**
-	* @generated
-	 */
-	public Integer getCapacity() {
-		return this.capacity;
-	}
-
-	/**
-	* @generated
-	 */
-	public void setLink1(String link1) {
-		this.link1 = link1;
-	}
-
-	/**
-	* @generated
-	 */
-	public String getLink1() {
-		return this.link1;
-	}
-
-	/**
-	* @generated
-	 */
-	public void setLink2(String link2) {
-		this.link2 = link2;
-	}
-
-	/**
-	* @generated
-	 */
-	public String getLink2() {
-		return this.link2;
-	}
-
-	/**
-	* @generated
-	 */
-	public void setLink3(String link3) {
-		this.link3 = link3;
-	}
-
-	/**
-	* @generated
-	 */
-	public String getLink3() {
-		return this.link3;
-	}
-
-	/**
-	* @generated
 	 */
 	public void setAreaM2(Integer areaM2) {
 		this.areaM2 = areaM2;
 	}
 
 	/**
-	* @generated
 	 */
 	public Integer getAreaM2() {
 		return this.areaM2;
 	}
 
 	/**
-	* @generated
 	 */
-	public void setHost(Host host) {
-		this.host = host;
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
 	}
 
 	/**
-	* @generated
 	 */
-	@JsonIgnore
-	public Host getHost() {
-		return host;
+	public Integer getCapacity() {
+		return this.capacity;
 	}
 
 	/**
-	* @generated
 	 */
-	public void setContents(Set<Content> contents) {
-		this.contents = contents;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	/**
-	* @generated
 	 */
-	@JsonIgnore
-	public Set<Content> getContents() {
-		if (contents == null) {
-			contents = new java.util.LinkedHashSet<com.mayaccom.domain.Content>();
-		}
-		return contents;
+	public String getCity() {
+		return this.city;
 	}
 
 	/**
-	* @generated
+	 */
+	public void setLink1(String link1) {
+		this.link1 = link1;
+	}
+
+	/**
+	 */
+	public String getLink1() {
+		return this.link1;
+	}
+
+	/**
+	 */
+	public void setLink2(String link2) {
+		this.link2 = link2;
+	}
+
+	/**
+	 */
+	public String getLink2() {
+		return this.link2;
+	}
+
+	/**
+	 */
+	public void setLink3(String link3) {
+		this.link3 = link3;
+	}
+
+	/**
+	 */
+	public String getLink3() {
+		return this.link3;
+	}
+
+	/**
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 */
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	/**
+	 */
+	public String getZipCode() {
+		return this.zipCode;
+	}
+
+	/**
+	 */
+	public void setPersonId(Integer personId) {
+		this.personId = personId;
+	}
+
+	/**
+	 */
+	public Integer getPersonId() {
+		return this.personId;
+	}
+
+	/**
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	/**
+	 */
+	public String getType() {
+		return this.type;
+	}
+
+	/**
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 */
+	public String getDescription() {
+		return this.description;
+	}
+
+	/**
+	 */
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	/**
+	 */
+	public Boolean getActive() {
+		return this.active;
+	}
+
+	/**
+	 */
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	/**
+	 */
+	public byte[] getImage() {
+		return this.image;
+	}
+
+	/**
+	 */
+	public void setRate(Integer rate) {
+		this.rate = rate;
+	}
+
+	/**
+	 */
+	public Integer getRate() {
+		return this.rate;
+	}
+
+	/**
+	 */
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	/**
+	 */
+	public String getComment() {
+		return this.comment;
+	}
+
+	/**
 	 */
 	public Accomodation() {
 	}
@@ -341,49 +405,57 @@ public class Accomodation implements Serializable {
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
-	* @generated
 	 */
 	public void copy(Accomodation that) {
 		setId(that.getId());
-		setName(that.getName());
 		setAddress(that.getAddress());
-		setCity(that.getCity());
-		setZipCode(that.getZipCode());
+		setAreaM2(that.getAreaM2());
 		setCapacity(that.getCapacity());
+		setCity(that.getCity());
 		setLink1(that.getLink1());
 		setLink2(that.getLink2());
 		setLink3(that.getLink3());
-		setAreaM2(that.getAreaM2());
-		setHost(that.getHost());
-		setContents(new java.util.LinkedHashSet<com.mayaccom.domain.Content>(that.getContents()));
+		setName(that.getName());
+		setZipCode(that.getZipCode());
+		setPersonId(that.getPersonId());
+		setType(that.getType());
+		setDescription(that.getDescription());
+		setActive(that.getActive());
+		setImage(that.getImage());
+		setRate(that.getRate());
+		setComment(that.getComment());
 	}
 
 	/**
 	 * Returns a textual representation of a bean.
 	 *
-	* @generated
 	 */
 	public String toString() {
 
 		StringBuilder buffer = new StringBuilder();
 
 		buffer.append("id=[").append(id).append("] ");
-		buffer.append("name=[").append(name).append("] ");
 		buffer.append("address=[").append(address).append("] ");
-		buffer.append("city=[").append(city).append("] ");
-		buffer.append("zipCode=[").append(zipCode).append("] ");
+		buffer.append("areaM2=[").append(areaM2).append("] ");
 		buffer.append("capacity=[").append(capacity).append("] ");
+		buffer.append("city=[").append(city).append("] ");
 		buffer.append("link1=[").append(link1).append("] ");
 		buffer.append("link2=[").append(link2).append("] ");
 		buffer.append("link3=[").append(link3).append("] ");
-		buffer.append("areaM2=[").append(areaM2).append("] ");
+		buffer.append("name=[").append(name).append("] ");
+		buffer.append("zipCode=[").append(zipCode).append("] ");
+		buffer.append("personId=[").append(personId).append("] ");
+		buffer.append("type=[").append(type).append("] ");
+		buffer.append("description=[").append(description).append("] ");
+		buffer.append("active=[").append(active).append("] ");
+		buffer.append("image=[").append(image).append("] ");
+		buffer.append("rate=[").append(rate).append("] ");
+		buffer.append("comment=[").append(comment).append("] ");
 
 		return buffer.toString();
 	}
 
 	/**
-	* @generated
-	* @AuxiliaryModelComponent
 	 */
 	@Override
 	public int hashCode() {
@@ -394,8 +466,6 @@ public class Accomodation implements Serializable {
 	}
 
 	/**
-	* @generated
-	* @AuxiliaryModelComponent
 	 */
 	public boolean equals(Object obj) {
 		if (obj == this)

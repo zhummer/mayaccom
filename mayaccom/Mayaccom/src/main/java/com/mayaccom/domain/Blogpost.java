@@ -6,38 +6,26 @@ import java.io.Serializable;
 import java.lang.StringBuilder;
 
 import java.util.Calendar;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.xml.bind.annotation.*;
 
 import javax.persistence.*;
 
 /**
- * @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Blogpost.datatype]
- * @generated
  */
 
 @Entity
-@NamedQueries({
-		@NamedQuery(name = "findAllBlogposts", query = "select myBlogpost from Blogpost myBlogpost"),
-		@NamedQuery(name = "findBlogpostByPrimaryKey", query = "select myBlogpost from Blogpost myBlogpost where myBlogpost.id = ?1") })
 
 @Table(catalog = "mayaccom", name = "blogpost")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(namespace = "Mayaccom/com/mayaccom/domain", name = "Blogpost")
-@XmlRootElement(namespace = "Mayaccom/com/mayaccom/domain")
+
 public class Blogpost implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Blogpost.datatype#//@fields%5Bname='id'%5D]
 	 */
 
 	@Column(name = "id", nullable = false)
@@ -47,7 +35,6 @@ public class Blogpost implements Serializable {
 	@XmlElement
 	Integer id;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Blogpost.datatype#//@fields%5Bname='content'%5D]
 	 */
 
 	@Column(name = "content", columnDefinition = "LONGTEXT")
@@ -57,107 +44,71 @@ public class Blogpost implements Serializable {
 	@XmlElement
 	String content;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Blogpost.datatype#//@fields%5Bname='creationTs'%5D]
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "creationTS")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "creationts")
 	@Basic(fetch = FetchType.EAGER)
 
 	@XmlElement
-	Calendar creationTs;
-
+	Calendar creationts;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Blogpost.datatype#//@relationships%5Bname='blog'%5D]
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({ @JoinColumn(name = "blog_id", referencedColumnName = "id") })
-	@XmlTransient
-	Blog blog;
-	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Blogpost.datatype#//@relationships%5Bname='blogcomments'%5D]
-	 */
-	@OneToMany(mappedBy = "blogpost", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 
-	@XmlElement(name = "", namespace = "")
-	java.util.Set<com.mayaccom.domain.Blogcomment> blogcomments;
+	@Column(name = "blog_id")
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	Integer blogId;
 
 	/**
-	* @generated
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	* @generated
 	 */
 	public Integer getId() {
 		return this.id;
 	}
 
 	/**
-	* @generated
 	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
 
 	/**
-	* @generated
 	 */
 	public String getContent() {
 		return this.content;
 	}
 
 	/**
-	* @generated
 	 */
-	public void setCreationTs(Calendar creationTs) {
-		this.creationTs = creationTs;
+	public void setCreationts(Calendar creationts) {
+		this.creationts = creationts;
 	}
 
 	/**
-	* @generated
 	 */
-	public Calendar getCreationTs() {
-		return this.creationTs;
+	public Calendar getCreationts() {
+		return this.creationts;
 	}
 
 	/**
-	* @generated
 	 */
-	public void setBlog(Blog blog) {
-		this.blog = blog;
+	public void setBlogId(Integer blogId) {
+		this.blogId = blogId;
 	}
 
 	/**
-	* @generated
 	 */
-	@JsonIgnore
-	public Blog getBlog() {
-		return blog;
+	public Integer getBlogId() {
+		return this.blogId;
 	}
 
 	/**
-	* @generated
-	 */
-	public void setBlogcomments(Set<Blogcomment> blogcomments) {
-		this.blogcomments = blogcomments;
-	}
-
-	/**
-	* @generated
-	 */
-	@JsonIgnore
-	public Set<Blogcomment> getBlogcomments() {
-		if (blogcomments == null) {
-			blogcomments = new java.util.LinkedHashSet<com.mayaccom.domain.Blogcomment>();
-		}
-		return blogcomments;
-	}
-
-	/**
-	* @generated
 	 */
 	public Blogpost() {
 	}
@@ -165,20 +116,17 @@ public class Blogpost implements Serializable {
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
-	* @generated
 	 */
 	public void copy(Blogpost that) {
 		setId(that.getId());
 		setContent(that.getContent());
-		setCreationTs(that.getCreationTs());
-		setBlog(that.getBlog());
-		setBlogcomments(new java.util.LinkedHashSet<com.mayaccom.domain.Blogcomment>(that.getBlogcomments()));
+		setCreationts(that.getCreationts());
+		setBlogId(that.getBlogId());
 	}
 
 	/**
 	 * Returns a textual representation of a bean.
 	 *
-	* @generated
 	 */
 	public String toString() {
 
@@ -186,14 +134,13 @@ public class Blogpost implements Serializable {
 
 		buffer.append("id=[").append(id).append("] ");
 		buffer.append("content=[").append(content).append("] ");
-		buffer.append("creationTs=[").append(creationTs).append("] ");
+		buffer.append("creationts=[").append(creationts).append("] ");
+		buffer.append("blogId=[").append(blogId).append("] ");
 
 		return buffer.toString();
 	}
 
 	/**
-	* @generated
-	* @AuxiliaryModelComponent
 	 */
 	@Override
 	public int hashCode() {
@@ -204,8 +151,6 @@ public class Blogpost implements Serializable {
 	}
 
 	/**
-	* @generated
-	* @AuxiliaryModelComponent
 	 */
 	public boolean equals(Object obj) {
 		if (obj == this)

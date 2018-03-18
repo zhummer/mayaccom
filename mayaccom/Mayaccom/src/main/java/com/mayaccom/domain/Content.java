@@ -5,31 +5,16 @@ import java.io.Serializable;
 
 import java.lang.StringBuilder;
 
-import java.util.Set;
-
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.xml.bind.annotation.*;
 
 import javax.persistence.*;
 
 /**
- * @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Content.datatype]
- * @generated
  */
 
 @Entity
-@NamedQueries({
-		@NamedQuery(name = "findAllContents", query = "select myContent from Content myContent"),
-		@NamedQuery(name = "findContentByContentName", query = "select myContent from Content myContent where myContent.contentName = ?1"),
-		@NamedQuery(name = "findContentByContentNameContaining", query = "select myContent from Content myContent where myContent.contentName like ?1"),
-		@NamedQuery(name = "findContentByEditorContent", query = "select myContent from Content myContent where myContent.editorContent = ?1"),
-		@NamedQuery(name = "findContentById", query = "select myContent from Content myContent where myContent.id = ?1"),
-		@NamedQuery(name = "findContentByPrimaryKey", query = "select myContent from Content myContent where myContent.id = ?1") })
 
 @Table(catalog = "mayaccom", name = "content")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -39,7 +24,6 @@ public class Content implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Content.datatype#//@fields%5Bname='id'%5D]
 	 */
 
 	@Column(name = "id", nullable = false)
@@ -49,7 +33,14 @@ public class Content implements Serializable {
 	@XmlElement
 	Integer id;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Content.datatype#//@fields%5Bname='editorContent'%5D]
+	 */
+
+	@Column(name = "content_name")
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	String contentName;
+	/**
 	 */
 
 	@Column(name = "editor_content", columnDefinition = "LONGTEXT")
@@ -59,82 +50,63 @@ public class Content implements Serializable {
 	@XmlElement
 	String editorContent;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Content.datatype#//@fields%5Bname='contentName'%5D]
 	 */
 
-	@Column(name = "content_name")
+	@Column(name = "accomodation_id", nullable = false)
 	@Basic(fetch = FetchType.EAGER)
 
 	@XmlElement
-	String contentName;
+	Integer accomodationId;
 
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Content.datatype#//@relationships%5Bname='accomodation'%5D]
-	 */
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({ @JoinColumn(name = "accomodation_id", referencedColumnName = "id", nullable = false) })
-	@XmlTransient
-	Accomodation accomodation;
-
-	/**
-	* @generated
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	* @generated
 	 */
 	public Integer getId() {
 		return this.id;
 	}
 
 	/**
-	* @generated
-	 */
-	public void setEditorContent(String editorContent) {
-		this.editorContent = editorContent;
-	}
-
-	/**
-	* @generated
-	 */
-	public String getEditorContent() {
-		return this.editorContent;
-	}
-
-	/**
-	* @generated
 	 */
 	public void setContentName(String contentName) {
 		this.contentName = contentName;
 	}
 
 	/**
-	* @generated
 	 */
 	public String getContentName() {
 		return this.contentName;
 	}
 
 	/**
-	* @generated
 	 */
-	public void setAccomodation(Accomodation accomodation) {
-		this.accomodation = accomodation;
+	public void setEditorContent(String editorContent) {
+		this.editorContent = editorContent;
 	}
 
 	/**
-	* @generated
 	 */
-	@JsonIgnore
-	public Accomodation getAccomodation() {
-		return accomodation;
+	public String getEditorContent() {
+		return this.editorContent;
 	}
 
 	/**
-	* @generated
+	 */
+	public void setAccomodationId(Integer accomodationId) {
+		this.accomodationId = accomodationId;
+	}
+
+	/**
+	 */
+	public Integer getAccomodationId() {
+		return this.accomodationId;
+	}
+
+	/**
 	 */
 	public Content() {
 	}
@@ -142,34 +114,31 @@ public class Content implements Serializable {
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
-	* @generated
 	 */
 	public void copy(Content that) {
 		setId(that.getId());
-		setEditorContent(that.getEditorContent());
 		setContentName(that.getContentName());
-		setAccomodation(that.getAccomodation());
+		setEditorContent(that.getEditorContent());
+		setAccomodationId(that.getAccomodationId());
 	}
 
 	/**
 	 * Returns a textual representation of a bean.
 	 *
-	* @generated
 	 */
 	public String toString() {
 
 		StringBuilder buffer = new StringBuilder();
 
 		buffer.append("id=[").append(id).append("] ");
-		buffer.append("editorContent=[").append(editorContent).append("] ");
 		buffer.append("contentName=[").append(contentName).append("] ");
+		buffer.append("editorContent=[").append(editorContent).append("] ");
+		buffer.append("accomodationId=[").append(accomodationId).append("] ");
 
 		return buffer.toString();
 	}
 
 	/**
-	* @generated
-	* @AuxiliaryModelComponent
 	 */
 	@Override
 	public int hashCode() {
@@ -180,8 +149,6 @@ public class Content implements Serializable {
 	}
 
 	/**
-	* @generated
-	* @AuxiliaryModelComponent
 	 */
 	public boolean equals(Object obj) {
 		if (obj == this)

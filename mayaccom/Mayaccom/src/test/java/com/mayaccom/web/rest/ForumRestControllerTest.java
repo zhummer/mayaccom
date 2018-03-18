@@ -27,8 +27,6 @@ import org.springframework.web.context.request.SessionScope;
  * Unit test for the <code>ForumRestController</code> controller.
  *
  * @see com.mayaccom.web.rest.ForumRestController
- * @generated
- * @AuxiliaryModelComponent
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -40,87 +38,11 @@ public class ForumRestControllerTest {
 	/**
 	 * The Spring application context.
 	 *
-	* @generated
 	 */
 	private ApplicationContext context;
 
 	/**
-	 * Test <code>Forumforum_idtopicstopic_id()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	@SuppressWarnings("unused")
-	public void DeleteForumforum_idtopicstopic_id() throws Exception {
-		MockHttpServletRequest request = getMockHttpServletRequest();
-		request.setRequestURI("/Forum/{forum_id}/topics/{topic_id}");
-		MockHttpServletResponse response = getMockHttpServletResponse();
-
-		// Get the singleton controller instance
-		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
-
-		// TODO Invoke method and Assert return values
-
-	}
-
-	/**
-	 * Test <code>Forumforum_id()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	@SuppressWarnings("unused")
-	public void DeleteForumforum_id() throws Exception {
-		MockHttpServletRequest request = getMockHttpServletRequest();
-		request.setRequestURI("/Forum/{forum_id}");
-		MockHttpServletResponse response = getMockHttpServletResponse();
-
-		// Get the singleton controller instance
-		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
-
-		// TODO Invoke method and Assert return values
-
-	}
-
-	/**
-	 * Test <code>Forumforum_idtopics()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	@SuppressWarnings("unused")
-	public void GetForumforum_idtopics() throws Exception {
-		MockHttpServletRequest request = getMockHttpServletRequest();
-		request.setRequestURI("/Forum/{forum_id}/topics");
-		MockHttpServletResponse response = getMockHttpServletResponse();
-
-		// Get the singleton controller instance
-		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
-
-		// TODO Invoke method and Assert return values
-
-	}
-
-	/**
 	 * Test <code>Forum()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
 	@SuppressWarnings("unused")
@@ -137,36 +59,7 @@ public class ForumRestControllerTest {
 	}
 
 	/**
-	 * Test <code>Forumforum_idtopicstopic_id()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	@SuppressWarnings("unused")
-	public void GetForumforum_idtopicstopic_id() throws Exception {
-		MockHttpServletRequest request = getMockHttpServletRequest();
-		request.setRequestURI("/Forum/{forum_id}/topics/{topic_id}");
-		MockHttpServletResponse response = getMockHttpServletResponse();
-
-		// Get the singleton controller instance
-		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
-
-		// TODO Invoke method and Assert return values
-
-	}
-
-	/**
 	 * Test <code>Forumforum_id()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
 	@SuppressWarnings("unused")
@@ -183,82 +76,7 @@ public class ForumRestControllerTest {
 	}
 
 	/**
-	 * Test <code>Forumforum_idtopics()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	@SuppressWarnings("unused")
-	public void PostForumforum_idtopics() throws Exception {
-		MockHttpServletRequest request = getMockHttpServletRequest();
-		request.setRequestURI("/Forum/{forum_id}/topics");
-		MockHttpServletResponse response = getMockHttpServletResponse();
-
-		// Get the singleton controller instance
-		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
-
-		// TODO Invoke method and Assert return values
-
-	}
-
-	/**
 	 * Test <code>Forum()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	@SuppressWarnings("unused")
-	public void PostForum() throws Exception {
-		MockHttpServletRequest request = getMockHttpServletRequest();
-		request.setRequestURI("/Forum");
-		MockHttpServletResponse response = getMockHttpServletResponse();
-
-		// Get the singleton controller instance
-		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
-
-		// TODO Invoke method and Assert return values
-
-	}
-
-	/**
-	 * Test <code>Forumforum_idtopics()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	@SuppressWarnings("unused")
-	public void PutForumforum_idtopics() throws Exception {
-		MockHttpServletRequest request = getMockHttpServletRequest();
-		request.setRequestURI("/Forum/{forum_id}/topics");
-		MockHttpServletResponse response = getMockHttpServletResponse();
-
-		// Get the singleton controller instance
-		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
-
-		// TODO Invoke method and Assert return values
-
-	}
-
-	/**
-	 * Test <code>Forum()</code>.
-	* @generated
-	 *
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
 	@SuppressWarnings("unused")
@@ -275,9 +93,42 @@ public class ForumRestControllerTest {
 	}
 
 	/**
+	 * Test <code>Forum()</code>.
+	 */
+	@Test
+	@SuppressWarnings("unused")
+	public void PostForum() throws Exception {
+		MockHttpServletRequest request = getMockHttpServletRequest();
+		request.setRequestURI("/Forum");
+		MockHttpServletResponse response = getMockHttpServletResponse();
+
+		// Get the singleton controller instance
+		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
+
+		// TODO Invoke method and Assert return values
+
+	}
+
+	/**
+	 * Test <code>Forumforum_id()</code>.
+	 */
+	@Test
+	@SuppressWarnings("unused")
+	public void DeleteForumforum_id() throws Exception {
+		MockHttpServletRequest request = getMockHttpServletRequest();
+		request.setRequestURI("/Forum/{forum_id}");
+		MockHttpServletResponse response = getMockHttpServletResponse();
+
+		// Get the singleton controller instance
+		ForumRestController controller = (ForumRestController) context.getBean("ForumRestController");
+
+		// TODO Invoke method and Assert return values
+
+	}
+
+	/**
 	 * Autowired to set the Spring application context.
 	 *
-	* @generated
 	 */
 	@Autowired
 	public void setContext(ApplicationContext context) {
@@ -289,7 +140,6 @@ public class ForumRestControllerTest {
 	/**
 	 * Returns a mock HttpServletRequest object.
 	 *
-	* @generated
 	 */
 	private MockHttpServletRequest getMockHttpServletRequest() {
 		MockHttpServletRequest request = new MockHttpServletRequest();
@@ -301,7 +151,6 @@ public class ForumRestControllerTest {
 	/**
 	 * Returns a mock HttpServletResponse object.
 	 *
-	* @generated
 	 */
 	private MockHttpServletResponse getMockHttpServletResponse() {
 		return new MockHttpServletResponse();

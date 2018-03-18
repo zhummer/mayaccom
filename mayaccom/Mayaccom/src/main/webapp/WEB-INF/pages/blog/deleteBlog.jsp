@@ -26,6 +26,15 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
+							<fmt:message key="blog.description.title"/>:
+						</td>
+						<td>
+							${blog.description}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
 							<fmt:message key="blog.title.title"/>:
 						</td>
 						<td>
@@ -35,10 +44,10 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="blog.description.title"/>:
+							<fmt:message key="blog.owner.title"/>:
 						</td>
 						<td>
-							${blog.description}
+							${blog.owner}
 						&nbsp;
 						</td>
 					</tr>

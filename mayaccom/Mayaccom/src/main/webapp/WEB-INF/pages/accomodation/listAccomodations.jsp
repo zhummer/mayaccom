@@ -18,15 +18,21 @@
 				<tr>
 					<th class="thead">&nbsp;</th>
 					<th class="thead"><fmt:message key="accomodation.id.title"/></th>
-					<th class="thead"><fmt:message key="accomodation.name.title"/></th>
 					<th class="thead"><fmt:message key="accomodation.address.title"/></th>
-					<th class="thead"><fmt:message key="accomodation.city.title"/></th>
-					<th class="thead"><fmt:message key="accomodation.zipcode.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.aream2.title"/></th>
 					<th class="thead"><fmt:message key="accomodation.capacity.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.city.title"/></th>
 					<th class="thead"><fmt:message key="accomodation.link1.title"/></th>
 					<th class="thead"><fmt:message key="accomodation.link2.title"/></th>
 					<th class="thead"><fmt:message key="accomodation.link3.title"/></th>
-					<th class="thead"><fmt:message key="accomodation.aream2.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.name.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.zipcode.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.personid.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.type.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.description.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.active.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.rate.title"/></th>
+					<th class="thead"><fmt:message key="accomodation.comment.title"/></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,27 +58,22 @@
 					</td>
 					<td nowrap="nowrap" class="tabletd">
 						
-							${current.name}
-						&nbsp;
-					</td>
-					<td nowrap="nowrap" class="tabletd">
-						
 							${current.address}
 						&nbsp;
 					</td>
 					<td nowrap="nowrap" class="tabletd">
 						
-							${current.city}
-						&nbsp;
-					</td>
-					<td nowrap="nowrap" class="tabletd">
-						
-							${current.zipCode}
+							${current.areaM2}
 						&nbsp;
 					</td>
 					<td nowrap="nowrap" class="tabletd">
 						
 							${current.capacity}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
+							${current.city}
 						&nbsp;
 					</td>
 					<td nowrap="nowrap" class="tabletd">
@@ -92,7 +93,42 @@
 					</td>
 					<td nowrap="nowrap" class="tabletd">
 						
-							${current.areaM2}
+							${current.name}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
+							${current.zipCode}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
+							${current.personId}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
+							${current.type}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
+							${current.description}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
+							${current.active}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
+							${current.rate}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
+							${current.comment}
 						&nbsp;
 					</td>
 				</tr>

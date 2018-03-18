@@ -5,29 +5,16 @@ import java.io.Serializable;
 
 import java.lang.StringBuilder;
 
-import java.util.Set;
-
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.xml.bind.annotation.*;
 
 import javax.persistence.*;
 
 /**
- * @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Post.datatype]
- * @generated
  */
 
 @Entity
-@NamedQueries({
-		@NamedQuery(name = "findAllPosts", query = "select myPost from Post myPost"),
-		@NamedQuery(name = "findPostByContent", query = "select myPost from Post myPost where myPost.content = ?1"),
-		@NamedQuery(name = "findPostById", query = "select myPost from Post myPost where myPost.id = ?1"),
-		@NamedQuery(name = "findPostByPrimaryKey", query = "select myPost from Post myPost where myPost.id = ?1") })
 
 @Table(catalog = "mayaccom", name = "post")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -37,7 +24,6 @@ public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Post.datatype#//@fields%5Bname='id'%5D]
 	 */
 
 	@Column(name = "id", nullable = false)
@@ -47,7 +33,6 @@ public class Post implements Serializable {
 	@XmlElement
 	Integer id;
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Post.datatype#//@fields%5Bname='content'%5D]
 	 */
 
 	@Column(name = "content", columnDefinition = "TEXT")
@@ -56,82 +41,72 @@ public class Post implements Serializable {
 
 	@XmlElement
 	String content;
+	/**
+	 */
+
+	@Column(name = "person_id", nullable = false)
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	Integer personId;
+	/**
+	 */
+
+	@Column(name = "topic_id", nullable = false)
+	@Basic(fetch = FetchType.EAGER)
+
+	@XmlElement
+	Integer topicId;
 
 	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Post.datatype#//@relationships%5Bname='host'%5D]
-	 */
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({ @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false) })
-	@XmlTransient
-	Host host;
-	/**
-	* @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/domain/Post.datatype#//@relationships%5Bname='topic'%5D]
-	 */
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({ @JoinColumn(name = "topic_id", referencedColumnName = "id", nullable = false) })
-	@XmlTransient
-	Topic topic;
-
-	/**
-	* @generated
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	* @generated
 	 */
 	public Integer getId() {
 		return this.id;
 	}
 
 	/**
-	* @generated
 	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
 
 	/**
-	* @generated
 	 */
 	public String getContent() {
 		return this.content;
 	}
 
 	/**
-	* @generated
 	 */
-	public void setHost(Host host) {
-		this.host = host;
+	public void setPersonId(Integer personId) {
+		this.personId = personId;
 	}
 
 	/**
-	* @generated
 	 */
-	@JsonIgnore
-	public Host getHost() {
-		return host;
+	public Integer getPersonId() {
+		return this.personId;
 	}
 
 	/**
-	* @generated
 	 */
-	public void setTopic(Topic topic) {
-		this.topic = topic;
+	public void setTopicId(Integer topicId) {
+		this.topicId = topicId;
 	}
 
 	/**
-	* @generated
 	 */
-	@JsonIgnore
-	public Topic getTopic() {
-		return topic;
+	public Integer getTopicId() {
+		return this.topicId;
 	}
 
 	/**
-	* @generated
 	 */
 	public Post() {
 	}
@@ -139,19 +114,17 @@ public class Post implements Serializable {
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
-	* @generated
 	 */
 	public void copy(Post that) {
 		setId(that.getId());
 		setContent(that.getContent());
-		setHost(that.getHost());
-		setTopic(that.getTopic());
+		setPersonId(that.getPersonId());
+		setTopicId(that.getTopicId());
 	}
 
 	/**
 	 * Returns a textual representation of a bean.
 	 *
-	* @generated
 	 */
 	public String toString() {
 
@@ -159,13 +132,13 @@ public class Post implements Serializable {
 
 		buffer.append("id=[").append(id).append("] ");
 		buffer.append("content=[").append(content).append("] ");
+		buffer.append("personId=[").append(personId).append("] ");
+		buffer.append("topicId=[").append(topicId).append("] ");
 
 		return buffer.toString();
 	}
 
 	/**
-	* @generated
-	* @AuxiliaryModelComponent
 	 */
 	@Override
 	public int hashCode() {
@@ -176,8 +149,6 @@ public class Post implements Serializable {
 	}
 
 	/**
-	* @generated
-	* @AuxiliaryModelComponent
 	 */
 	public boolean equals(Object obj) {
 		if (obj == this)

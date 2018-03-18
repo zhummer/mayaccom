@@ -24,8 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * DAO to manage Blog entities.
  * 
- * @ModelCoreReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/.properties.datastore]
- * @generated
  */
 @Repository("BlogDAO")
 
@@ -35,14 +33,12 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	/**
 	 * Set of entity classes managed by this DAO.  Typically a DAO manages a single entity.
 	 *
-	* @generated
 	 */
 	private final static Set<Class<?>> dataTypes = new HashSet<Class<?>>(Arrays.asList(new Class<?>[] { Blog.class }));
 
 	/**
 	 * EntityManager injected by Spring for persistence unit MayaDB
 	 *
-	* @generated
 	 */
 	@PersistenceContext(unitName = "MayaDB")
 	private EntityManager entityManager;
@@ -50,7 +46,6 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	/**
 	 * Instantiates a new BlogDAOImpl
 	 *
-	* @generated
 	 */
 	public BlogDAOImpl() {
 		super();
@@ -59,7 +54,6 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	/**
 	 * Get the entity manager that manages persistence unit 
 	 *
-	* @generated
 	 */
 	public EntityManager getEntityManager() {
 		return entityManager;
@@ -68,40 +62,14 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	/**
 	 * Returns the set of entity classes managed by this DAO.
 	 *
-	* @generated
 	 */
 	public Set<Class<?>> getTypes() {
 		return dataTypes;
 	}
 
 	/**
-	 * JPQL Query - findBlogByDescription
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogByDescription.query]JPASelect
-	 */
-	@Transactional
-	public Set<Blog> findBlogByDescription(String description1) throws DataAccessException {
-
-		return findBlogByDescription(description1, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findBlogByDescription
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogByDescription.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Blog> findBlogByDescription(String description1, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findBlogByDescription", startResult, maxRows, description1);
-		return new LinkedHashSet<Blog>(query.getResultList());
-	}
-
-	/**
 	 * JPQL Query - findAllBlogs
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findAllBlogs.query]JPASelect
 	 */
 	@Transactional
 	public Set<Blog> findAllBlogs() throws DataAccessException {
@@ -112,7 +80,6 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	/**
 	 * JPQL Query - findAllBlogs
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findAllBlogs.query]JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -123,9 +90,74 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	}
 
 	/**
+	 * JPQL Query - findBlogByDescription
+	 *
+	 */
+	@Transactional
+	public Set<Blog> findBlogByDescription(String description) throws DataAccessException {
+
+		return findBlogByDescription(description, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findBlogByDescription
+	 *
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Blog> findBlogByDescription(String description, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findBlogByDescription", startResult, maxRows, description);
+		return new LinkedHashSet<Blog>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findBlogByTitle
+	 *
+	 */
+	@Transactional
+	public Set<Blog> findBlogByTitle(String title) throws DataAccessException {
+
+		return findBlogByTitle(title, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findBlogByTitle
+	 *
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Blog> findBlogByTitle(String title, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findBlogByTitle", startResult, maxRows, title);
+		return new LinkedHashSet<Blog>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findBlogByTitleContaining
+	 *
+	 */
+	@Transactional
+	public Set<Blog> findBlogByTitleContaining(String title) throws DataAccessException {
+
+		return findBlogByTitleContaining(title, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findBlogByTitleContaining
+	 *
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Blog> findBlogByTitleContaining(String title, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findBlogByTitleContaining", startResult, maxRows, title);
+		return new LinkedHashSet<Blog>(query.getResultList());
+	}
+
+	/**
 	 * JPQL Query - findBlogById
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogById.query]JPASelect
 	 */
 	@Transactional
 	public Blog findBlogById(Integer id) throws DataAccessException {
@@ -136,7 +168,6 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	/**
 	 * JPQL Query - findBlogById
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogById.query]JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -152,7 +183,6 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	/**
 	 * JPQL Query - findBlogByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogByPrimaryKey.query]JPASelect
 	 */
 	@Transactional
 	public Blog findBlogByPrimaryKey(Integer id) throws DataAccessException {
@@ -163,7 +193,6 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	/**
 	 * JPQL Query - findBlogByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogByPrimaryKey.query]JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -177,50 +206,24 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	}
 
 	/**
-	 * JPQL Query - findBlogByTitleContaining
+	 * JPQL Query - findBlogByOwner
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogByTitleContaining.query]JPASelect
 	 */
 	@Transactional
-	public Set<Blog> findBlogByTitleContaining(String title) throws DataAccessException {
+	public Set<Blog> findBlogByOwner(Integer owner) throws DataAccessException {
 
-		return findBlogByTitleContaining(title, -1, -1);
+		return findBlogByOwner(owner, -1, -1);
 	}
 
 	/**
-	 * JPQL Query - findBlogByTitleContaining
+	 * JPQL Query - findBlogByOwner
 	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogByTitleContaining.query]JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public Set<Blog> findBlogByTitleContaining(String title, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findBlogByTitleContaining", startResult, maxRows, title);
-		return new LinkedHashSet<Blog>(query.getResultList());
-	}
-
-	/**
-	 * JPQL Query - findBlogByTitle
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogByTitle.query]JPASelect
-	 */
-	@Transactional
-	public Set<Blog> findBlogByTitle(String title) throws DataAccessException {
-
-		return findBlogByTitle(title, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findBlogByTitle
-	 *
-	 * @ModelReference [platform:/resource/Mayaccom/.springDSL/com/mayaccom/dao/BlogDAO/findBlogByTitle.query]JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Blog> findBlogByTitle(String title, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findBlogByTitle", startResult, maxRows, title);
+	public Set<Blog> findBlogByOwner(Integer owner, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findBlogByOwner", startResult, maxRows, owner);
 		return new LinkedHashSet<Blog>(query.getResultList());
 	}
 
@@ -229,7 +232,6 @@ public class BlogDAOImpl extends AbstractJpaDao<Blog> implements BlogDAO {
 	 * @see store
 	 * 
 	 *
-	* @generated
 	 */
 	public boolean canBeMerged(Blog entity) {
 		return true;

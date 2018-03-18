@@ -25,15 +25,6 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="forum.name.title"/>:
-						</td>
-						<td>
-							${forum.name}
-						&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td class="label" valign="top">
 							<fmt:message key="forum.description.title"/>:
 						</td>
 						<td>
@@ -41,60 +32,17 @@
 						&nbsp;
 						</td>
 					</tr>
-				</tbody>
-			</table>
-			<div class="clear">&nbsp;</div>
-			<div class="spacer">&nbsp;</div>
-			<h1><fmt:message key="topic.title"/></h1>
-					
-			<div class="navitem"><a class="button" href="${pageContext.request.contextPath}/newForumTopics?forum_id=${forum.id}&"><span><img src="${pageContext.request.contextPath}/images/icons/new.gif" /><fmt:message key="navigation.new"/> <fmt:message key="topic.title"/></span></a></div>
-			<table cellpadding="0" cellspacing="0" id="viewTable">
-				<thead>
 					<tr>
-						<th class="thead">&nbsp;</th>
-						<th class="thead"><fmt:message key="topic.id.title"/></th>
-						<th class="thead"><fmt:message key="topic.name.title"/></th>
-						<th class="thead"><fmt:message key="topic.lastposterid.title"/></th>
-						<th class="thead"><fmt:message key="topic.lastpostat.title"/></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${forum.topics}" var="current"  varStatus="i">	
-						<c:choose>
-							<c:when test="${(i.count) % 2 == 0}">
-					    		<c:set var="rowclass" value="rowtwo"/>
-							</c:when>
-							<c:otherwise>
-					    		<c:set var="rowclass" value="rowone"/>
-							</c:otherwise>
-						</c:choose>
-					<tr class="${rowclass}">
-						<td nowrap="nowrap">
-							<a title="<fmt:message key="navigation.view" />" href="${pageContext.request.contextPath}/selectForumTopics?forum_id=${forum.id}&topics_id=${current.id}&"><img src="images/icons/view.gif" /></a>
-							<a title="<fmt:message key="navigation.edit" />" href="${pageContext.request.contextPath}/editForumTopics?forum_id=${forum.id}&topics_id=${current.id}&"><img src="images/icons/edit.gif" /></a>
-							<a title="<fmt:message key="navigation.delete" />" href="${pageContext.request.contextPath}/confirmDeleteForumTopics?forum_id=${forum.id}&related_topics_id=${current.id}&"><img src="images/icons/delete.gif" /></a>
+						<td class="label" valign="top">
+							<fmt:message key="forum.name.title"/>:
 						</td>
 						<td>
-							${current.id}
-						&nbsp;
-						</td>
-						<td>
-							${current.name}
-						&nbsp;
-						</td>
-						<td>
-							${current.lastPosterId}
-						&nbsp;
-						</td>
-						<td>
-							<fmt:formatDate dateStyle="short" type="both" value="${current.lastPostAt.time}"/>
+							${forum.name}
 						&nbsp;
 						</td>
 					</tr>
-					</c:forEach>
 				</tbody>
 			</table>
-			
 			<div class="clear">&nbsp;</div>
 		</div>
 	</div></div></div></div>

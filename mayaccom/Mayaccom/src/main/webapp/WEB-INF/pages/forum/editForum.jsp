@@ -35,20 +35,20 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="forum.name.title"/>:
-						</td>
-						<td>
-							<form:input id="forum_name" path="name" cssStyle="width:300px;"/>
-							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "forum_name",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="forum.name.help"/>"}})); </script>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" valign="top">
 							<fmt:message key="forum.description.title"/>:
 						</td>
 						<td>
 							<form:input id="forum_description" path="description" cssStyle="width:300px;"/>
 							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "forum_description",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="forum.description.help"/>"}})); </script>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="forum.name.title"/>:
+						</td>
+						<td>
+							<form:input id="forum_name" path="name" cssStyle="width:300px;"/>
+							<script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "forum_name",widgetType : "dijit.form.ValidationTextBox",widgetAttrs : {promptMessage: "<fmt:message key="forum.name.help"/>"}})); </script>
 						</td>
 					</tr>
 				</tbody>

@@ -18,8 +18,8 @@
 				<tr>
 					<th class="thead">&nbsp;</th>
 					<th class="thead"><fmt:message key="forum.id.title"/></th>
-					<th class="thead"><fmt:message key="forum.name.title"/></th>
 					<th class="thead"><fmt:message key="forum.description.title"/></th>
+					<th class="thead"><fmt:message key="forum.name.title"/></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -45,12 +45,12 @@
 					</td>
 					<td nowrap="nowrap" class="tabletd">
 						
-							${current.name}
+							${current.description}
 						&nbsp;
 					</td>
 					<td nowrap="nowrap" class="tabletd">
 						
-							${current.description}
+							${current.name}
 						&nbsp;
 					</td>
 				</tr>

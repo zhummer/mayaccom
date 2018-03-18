@@ -26,15 +26,6 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="accomodation.name.title"/>:
-						</td>
-						<td>
-							${accomodation.name}
-						&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td class="label" valign="top">
 							<fmt:message key="accomodation.address.title"/>:
 						</td>
 						<td>
@@ -44,19 +35,10 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="accomodation.city.title"/>:
+							<fmt:message key="accomodation.aream2.title"/>:
 						</td>
 						<td>
-							${accomodation.city}
-						&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td class="label" valign="top">
-							<fmt:message key="accomodation.zipcode.title"/>:
-						</td>
-						<td>
-							${accomodation.zipCode}
+							${accomodation.areaM2}
 						&nbsp;
 						</td>
 					</tr>
@@ -66,6 +48,15 @@
 						</td>
 						<td>
 							${accomodation.capacity}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.city.title"/>:
+						</td>
+						<td>
+							${accomodation.city}
 						&nbsp;
 						</td>
 					</tr>
@@ -98,10 +89,73 @@
 					</tr>
 					<tr>
 						<td class="label" valign="top">
-							<fmt:message key="accomodation.aream2.title"/>:
+							<fmt:message key="accomodation.name.title"/>:
 						</td>
 						<td>
-							${accomodation.areaM2}
+							${accomodation.name}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.zipcode.title"/>:
+						</td>
+						<td>
+							${accomodation.zipCode}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.personid.title"/>:
+						</td>
+						<td>
+							${accomodation.personId}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.type.title"/>:
+						</td>
+						<td>
+							${accomodation.type}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.description.title"/>:
+						</td>
+						<td>
+							${accomodation.description}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.active.title"/>:
+						</td>
+						<td>
+							${accomodation.active}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.rate.title"/>:
+						</td>
+						<td>
+							${accomodation.rate}
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="label" valign="top">
+							<fmt:message key="accomodation.comment.title"/>:
+						</td>
+						<td>
+							${accomodation.comment}
 						&nbsp;
 						</td>
 					</tr>

@@ -18,8 +18,9 @@
 				<tr>
 					<th class="thead">&nbsp;</th>
 					<th class="thead"><fmt:message key="blog.id.title"/></th>
-					<th class="thead"><fmt:message key="blog.title.title"/></th>
 					<th class="thead"><fmt:message key="blog.description.title"/></th>
+					<th class="thead"><fmt:message key="blog.title.title"/></th>
+					<th class="thead"><fmt:message key="blog.owner.title"/></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -45,12 +46,17 @@
 					</td>
 					<td nowrap="nowrap" class="tabletd">
 						
+							${current.description}
+						&nbsp;
+					</td>
+					<td nowrap="nowrap" class="tabletd">
+						
 							${current.title}
 						&nbsp;
 					</td>
 					<td nowrap="nowrap" class="tabletd">
 						
-							${current.description}
+							${current.owner}
 						&nbsp;
 					</td>
 				</tr>

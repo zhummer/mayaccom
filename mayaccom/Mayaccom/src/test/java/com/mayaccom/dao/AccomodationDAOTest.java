@@ -26,8 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Class used to test the basic Data Store Functionality
  *
- * @generated
- * @AuxiliaryModelComponent
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,14 +43,12 @@ public class AccomodationDAOTest {
 	/**
 	 * The DAO being tested, injected by Spring
 	 *
-	* @generated
 	 */
 	private AccomodationDAO dataStore;
 
 	/**
 	 * Instantiates a new AccomodationDAOTest.
 	 *
-	* @generated
 	 */
 	public AccomodationDAOTest() {
 	}
@@ -60,7 +56,6 @@ public class AccomodationDAOTest {
 	/**
 	* Method to test Accomodation domain object.
 	*
-	* @generated
 	*/
 	@Rollback(false)
 	@Test
@@ -87,7 +82,6 @@ public class AccomodationDAOTest {
 	/**
 	 * Method to allow Spring to inject the DAO that will be tested
 	 *
-	* @generated
 	*/
 	@Autowired
 	public void setDataStore(AccomodationDAO dataStore) {

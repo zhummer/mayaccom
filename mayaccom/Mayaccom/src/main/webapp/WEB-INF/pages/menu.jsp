@@ -8,15 +8,8 @@
 			<h1>Spring MVC</h1>
 			<p class="line">&nbsp;</p>
 			<jsp:include page="/WEB-INF/pages/accomodation/menu.jsp" />
-<jsp:include page="/WEB-INF/pages/content/menu.jsp" />
-<jsp:include page="/WEB-INF/pages/post/menu.jsp" />
-<jsp:include page="/WEB-INF/pages/host/menu.jsp" />
-<jsp:include page="/WEB-INF/pages/topic/menu.jsp" />
-<jsp:include page="/WEB-INF/pages/person/menu.jsp" />
-<jsp:include page="/WEB-INF/pages/forum/menu.jsp" />
-<jsp:include page="/WEB-INF/pages/authorities/menu.jsp" />
-<jsp:include page="/WEB-INF/pages/users/menu.jsp" />
 <jsp:include page="/WEB-INF/pages/blog/menu.jsp" />
+<jsp:include page="/WEB-INF/pages/forum/menu.jsp" />
 <div class="clear">&nbsp;</div>
 		</div>
 	</div></div></div></div>

@@ -26,8 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Class used to test the basic Data Store Functionality
  *
- * @generated
- * @AuxiliaryModelComponent
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,14 +43,12 @@ public class ContentDAOTest {
 	/**
 	 * The DAO being tested, injected by Spring
 	 *
-	* @generated
 	 */
 	private ContentDAO dataStore;
 
 	/**
 	 * Instantiates a new ContentDAOTest.
 	 *
-	* @generated
 	 */
 	public ContentDAOTest() {
 	}
@@ -60,7 +56,6 @@ public class ContentDAOTest {
 	/**
 	* Method to test Content domain object.
 	*
-	* @generated
 	*/
 	@Rollback(false)
 	@Test
@@ -87,7 +82,6 @@ public class ContentDAOTest {
 	/**
 	 * Method to allow Spring to inject the DAO that will be tested
 	 *
-	* @generated
 	*/
 	@Autowired
 	public void setDataStore(ContentDAO dataStore) {

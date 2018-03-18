@@ -1,60 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security" 
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" 
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:lang="http://www.springframework.org/schema/lang"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
-	<http auto-config="true" >
-		<intercept-url pattern='/pages/login.jsp' />
-		<intercept-url pattern="/secure/*" access="IS_AUTHENTICATED_REMEMBERED" />
-		<form-login login-page="/pages/login.jsp" authentication-failure-url="/pages/login.jsp?login_error=true" always-use-default-target="true" default-target-url="/index.jsp" /> 
-		<logout logout-success-url="/pages/logout-redirect.jsp" invalidate-session="true" />
-		<remember-me key="MayaccomRMKey" user-service-ref="userDetailsService" />
-	</http>
-	
-	<authentication-manager alias="authenticationManager" >
-	<authentication-provider user-service-ref='userDetailsService' >
-		<password-encoder hash="md5"/>
-	</authentication-provider>
-	</authentication-manager>
-	
-	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
-		<beans:property name="rolePrefix" value="ROLE_" />
-		<beans:property name="dataSource" ref="springSecurityDataSource" />
-		<beans:property name="usersByUsernameQuery" value="SELECT username,password,enabled FROM Users WHERE username = ?" />
-		<beans:property name="authoritiesByUsernameQuery" value="SELECT u.username, a.authorityname FROM Users u JOIN Users_Authorities ua on u.id = ua.user_id JOIN Authorities a on ua.authorities_id = a.id WHERE u.username = ?" />
-	</beans:bean>	
-		
-	<!-- ******************************************************************** -->
-	<!-- Apply security for all beans where security was set -->
-	<!-- ******************************************************************** -->
-	<global-method-security >
-		<protect-pointcut expression="execution(* com.mayaccom.service.PersonService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.AccomodationService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.UsersService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.TopicService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.ForumService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.BlogService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.AuthoritiesService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.PostService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.ContentService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.service.HostService.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.BlogcommentDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.PostDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.AccomodationDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.HostDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.ContentDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.ForumDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.BlogpostDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.TopicDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.BlogDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<protect-pointcut expression="execution(* com.mayaccom.dao.PersonDAO.*(..))" access="IS_AUTHENTICATED_REMEMBERED"/>
-	</global-method-security>
 </beans:beans>
